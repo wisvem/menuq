@@ -3,5 +3,6 @@ from .base import *
 DEBUG = True
 
 INSTALLED_APPS += [
-    'djmoney',
+    'apps.products',
+    'rest_framework',
 ]

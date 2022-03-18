@@ -1,7 +1,6 @@
 from django.db import models
 from .product import Product
 from .price_list import PriceList
-from djmoney.models.fields import MoneyField
 
 
 class Price(models.Model):
