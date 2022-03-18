@@ -1,16 +1,18 @@
+from apps.base.models.abstract import *
 from django.db import models
-from .product import Product
+
 from .price_list import PriceList
+from .product import Product
 
 
-class Price(models.Model):
+class Price(TimeStampMixin):
+    price_list = models.ForeignKey(
+        PriceList, null=False,
+        on_delete=models.CASCADE
+    )
     product = models.ForeignKey(
         Product,
         null=False,
-        on_delete=models.CASCADE
-    )
-    price_list = models.ForeignKey(
-        PriceList, null=False,
         on_delete=models.CASCADE
     )
     price = models.DecimalField(
@@ -19,3 +21,10 @@ class Price(models.Model):
         default=0,
         null=False
     )
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['price_list', 'product'],
+                name='unique_product_per_list'
+            )
+        ]
