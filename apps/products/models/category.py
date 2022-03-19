@@ -4,7 +4,8 @@ from django.db import models
 
 class Category(BasicInfoMixin, TimeStampMixin):
     parent_id = models.ForeignKey(
-        Category, blank=True,
+        'self',
+        blank=True,
         null=True,
         on_delete=models.CASCADE
     )

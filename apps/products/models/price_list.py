@@ -1,4 +1,4 @@
-from apps.base.models.abstract import *
+from apps.base.models.mixins import *
 from django.db import models
 from moneyed import list_all_currencies
 
