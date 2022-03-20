@@ -6,10 +6,11 @@ class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
         fields = (
-            'parent_id',
+            'parent',
             'category_id',
             'name',
             'description',
+            'brand',
             'created',
             'updated',
         )

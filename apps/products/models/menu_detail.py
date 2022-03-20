@@ -12,7 +12,6 @@ class MenuDetail(TimeStampMixin):
     )
     category = models.ForeignKey(
         Category,
-        related_name='products',
         on_delete=models.CASCADE
     )
     product = models.ForeignKey(

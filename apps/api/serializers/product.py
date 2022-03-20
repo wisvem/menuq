@@ -9,6 +9,7 @@ class ProductSerializer(ModelSerializer):
             'name',
             'description',
             'photo',
+            'brand',
             'created',
             'updated',
         )
