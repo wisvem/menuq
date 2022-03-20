@@ -6,8 +6,9 @@ class ProductCategorySerializer(ModelSerializer):
     class Meta:
         model = ProductCategory
         fields = (
-            'category_id',
-            'product_id',
+            'parent_category',
+            'category'
+            'product',
             'created',
             'updated',
         )
