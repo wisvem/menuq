@@ -6,6 +6,7 @@ INSTALLED_APPS += [
     'apps.products',
     'rest_framework',
     'django_extensions',
+    'mptt'
 ]
 
 # REST FRAMEWORK

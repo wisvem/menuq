@@ -25,8 +25,8 @@ class BasicInfoMixin(models.Model):
     )
     description = models.TextField(
         max_length=10000,
-        null=False,
-        blank=False
+        null=True,
+        blank=True
     )
 
     class Meta:
