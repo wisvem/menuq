@@ -1,5 +1,4 @@
 from apps.base.models.mixins import *
-from django.db import models
 
 
 class Category(BasicInfoMixin, TimeStampMixin):

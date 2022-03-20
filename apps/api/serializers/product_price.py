@@ -1,4 +1,4 @@
-from apps.products.models.price import Price
+from apps.products.models.product_price import Price
 from rest_framework.serializers import ModelSerializer
 
 

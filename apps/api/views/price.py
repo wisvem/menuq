@@ -1,7 +1,7 @@
 """Price Serializer view"""
 
-from apps.api.serializers.price import PriceSerializer
-from apps.products.models.price import Price
+from apps.api.serializers.product_price import PriceSerializer
+from apps.products.models.product_price import Price
 from rest_framework.viewsets import ModelViewSet
 
 

@@ -1,5 +1,4 @@
 from apps.base.models.mixins import *
-from django.db import models
 
 from .price_list import PriceList
 from .product import Product
@@ -21,6 +20,7 @@ class Price(TimeStampMixin):
         default=0,
         null=False
     )
+
     class Meta:
         constraints = [
             models.UniqueConstraint(
