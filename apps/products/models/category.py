@@ -2,7 +2,7 @@ from apps.base.models.mixins import *
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Category(BasicInfoMixin, TimeStampMixin):
+class Category(BasicInfoMixin, TimeStampMixin, MPTTModel):
     parent = TreeForeignKey(
         'self',
         blank=True,

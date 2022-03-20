@@ -1,12 +1,18 @@
 from apps.base.models.mixins import *
 
+from .category import Category
 from .menu import Menu
 from .product import Product
 
 
-class ProductPrice(TimeStampMixin):
-    price_list = models.ForeignKey(
+class MenuDetail(TimeStampMixin):
+    menu = models.ForeignKey(
         Menu, null=False,
+        on_delete=models.CASCADE
+    )
+    category = models.ForeignKey(
+        Category,
+        related_name='products',
         on_delete=models.CASCADE
     )
     product = models.ForeignKey(
@@ -24,7 +30,7 @@ class ProductPrice(TimeStampMixin):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['price_list', 'product'],
+                fields=['menu', 'product', 'brand'],
                 name='unique_product_per_list'
             )
         ]
