@@ -7,13 +7,14 @@ from .product import Product
 class ProductCategory(BasicInfoMixin, TimeStampMixin):
     parent_id = models.ForeignKey(
         Category,
+        to_field='parent_id',
         blank=False,
         null=False,
         on_delete=models.CASCADE
     )
     category_id = models.ForeignKey(
         Category,
-        to_fields=['parent_id, category_id'],
+        to_field='category_id',
         blank=False,
         null=False,
         on_delete=models.CASCADE
@@ -28,7 +29,7 @@ class ProductCategory(BasicInfoMixin, TimeStampMixin):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['category_id', 'product_id'],
+                fields=['parent_id', 'category_id', 'product_id'],
                 name='unique_product_per_category'
             )
         ]

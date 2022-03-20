@@ -4,7 +4,7 @@ from .price_list import PriceList
 from .product import Product
 
 
-class Price(TimeStampMixin):
+class ProductPrice(TimeStampMixin):
     price_list = models.ForeignKey(
         PriceList, null=False,
         on_delete=models.CASCADE

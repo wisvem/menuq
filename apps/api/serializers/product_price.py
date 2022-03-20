@@ -1,10 +1,10 @@
-from apps.products.models.product_price import Price
+from apps.products.models.product_price import ProductPrice
 from rest_framework.serializers import ModelSerializer
 
 
-class PriceSerializer(ModelSerializer):
+class ProductPriceSerializer(ModelSerializer):
     class Meta:
-        model = Price
+        model = ProductPrice
         fields = (
             'price_list',
             'product',
