@@ -4,6 +4,7 @@ DEBUG = True
 
 INSTALLED_APPS += [
     'apps.products',
+    'apps.companies',
     'rest_framework',
     'django_extensions',
     'mptt'
