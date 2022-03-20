@@ -1,10 +1,10 @@
 from apps.base.models.mixins import *
 from django.db import models
-from moneyed import list_all_currencies
+from moneyed import CURRENCIES
 
 
 class PriceList(BasicInfoMixin, TimeStampMixin):
     currency = models.CharField(
         max_length=3,
-        choices=list_all_currencies()
+        choices=[(key, key) for key in CURRENCIES]
     )

@@ -2,10 +2,10 @@
 
 from apps.api.serializers.category import CategorySerializer
 from apps.products.models.category import Category
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 
 
-class CategoryViewSet(viewsets.GenericViewSet):
+class CategoryViewSet(ModelViewSet):
     """
     API endpoint to allow categories to be viewed or edited
     """

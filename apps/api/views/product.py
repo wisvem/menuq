@@ -2,10 +2,10 @@
 
 from apps.api.serializers.product import ProductSerializer
 from apps.products.models.product import Product
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 
 
-class ProductViewSet(viewsets.GenericViewSet):
+class ProductViewSet(ModelViewSet):
     """
     API endpoint to allow products to be viewed or edited
     """
