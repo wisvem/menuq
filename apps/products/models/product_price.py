@@ -1,12 +1,12 @@
 from apps.base.models.mixins import *
 
-from .price_list import PriceList
+from .menu import Menu
 from .product import Product
 
 
 class ProductPrice(TimeStampMixin):
     price_list = models.ForeignKey(
-        PriceList, null=False,
+        Menu, null=False,
         on_delete=models.CASCADE
     )
     product = models.ForeignKey(

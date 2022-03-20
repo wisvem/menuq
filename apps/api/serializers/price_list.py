@@ -1,9 +1,9 @@
-from apps.products.models.price_list import PriceList
+from apps.products.models.menu import Menu
 from rest_framework.serializers import ModelSerializer
 
 class PriceListSerializer(ModelSerializer):
     class Meta:
-        model = PriceList
+        model = Menu
         fields = (
             'name',
             'description',
