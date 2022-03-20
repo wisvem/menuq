@@ -29,7 +29,7 @@ class MenuDetail(TimeStampMixin):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['menu', 'product', 'brand'],
-                name='unique_product_per_list'
+                fields=['menu', 'product'],
+                name='unique_product_per_menu'
             )
         ]

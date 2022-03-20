@@ -7,3 +7,4 @@ class Menu(BasicInfoMixin, TimeStampMixin):
         max_length=3,
         choices=[(key, key) for key in CURRENCIES]
     )
+    qr_code = models.ImageField(null=True)
