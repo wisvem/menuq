@@ -1,11 +1,11 @@
-from mptt.models import MPTTModel, TreeForeignKey
+#rom mptt.models import MPTTModel, TreeForeignKey
 
 from apps.base.models.mixins import *
 from apps.companies.models.brand import Brand
 
 
-class Category(BasicInfoMixin, TimeStampMixin, MPTTModel):
-    parent = TreeForeignKey(
+class Category(BasicInfoMixin, TimeStampMixin):
+    parent = models.ForeignKey(
         'self',
         blank=True,
         null=True,
@@ -18,8 +18,8 @@ class Category(BasicInfoMixin, TimeStampMixin, MPTTModel):
         on_delete=models.CASCADE
     )
 
-    class MPTTMeta:
-        order_insertion_by = ['name']
+    # class MPTTMeta:
+    #     order_insertion_by = ['name']
 
     class Meta:
         constraints = [

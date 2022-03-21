@@ -16,3 +16,11 @@ class Brand(models.Model):
     updated = models.DateTimeField(
         auto_now=True
     )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['company', 'name'],
+                name='unique_brand'
+            )
+        ]

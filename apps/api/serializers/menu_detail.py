@@ -8,7 +8,7 @@ class MenuDetailSerializer(ModelSerializer):
         model = MenuDetail
         fields = (
             'menu',
-            'category'
+            'category',
             'product',
             'price',
             'created',

@@ -15,8 +15,8 @@ router.register(r'products', ProductViewSet)
 router.register(r'menudetail', MenuDetailViewSet)
 router.register(r'menu', MenuViewSet)
 router.register(r'categories', CategoryViewSet)
-router.register(r'companies', CategoryViewSet)
-router.register(r'brands', CategoryViewSet)
+router.register(r'companies', CompanyViewSet)
+router.register(r'brands', BrandViewSet)
 
 
 urlpatterns = [
