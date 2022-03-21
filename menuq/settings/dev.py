@@ -17,3 +17,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': DFC,
     'PAGE_SIZE': 10
 }
+
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'menuq-db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
