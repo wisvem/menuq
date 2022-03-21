@@ -1,6 +1,5 @@
-from django.db import models
-
 from .company import Company
+from apps.base.models.mixins import *
 
 
 class Brand(models.Model):
@@ -10,4 +9,10 @@ class Brand(models.Model):
         null=False,
         blank=False,
         on_delete=models.CASCADE
+    )
+    created = models.DateTimeField(
+        auto_now_add=True
+    )
+    updated = models.DateTimeField(
+        auto_now=True
     )

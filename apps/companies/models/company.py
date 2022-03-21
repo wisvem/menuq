@@ -1,6 +1,16 @@
-from django.db import models
+from apps.base.models.mixins import *
+from django_countries.fields import CountryField
 
 
-class Company(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+class Company(TimeStampMixin):
+    company_id = models.CharField(max_length=20)
     name = models.CharField(max_length=1000)
+    country = CountryField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['company_id', 'country'],
+                name='unique_company'
+            )
+        ]

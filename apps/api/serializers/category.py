@@ -8,7 +8,7 @@ class CategorySerializer(ModelSerializer):
         model = Category
         fields = (
             'parent',
-            'category_id',
+            'id',
             'name',
             'description',
             'brand',

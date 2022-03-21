@@ -1,7 +1,5 @@
 from django.db import models
 
-from apps.companies.models.brand import Brand
-
 
 class TimeStampMixin(models.Model):
     """Abstract class for time stamp
@@ -29,11 +27,6 @@ class BasicInfoMixin(models.Model):
         max_length=10000,
         null=True,
         blank=True
-    )
-    brand = models.ForeignKey(
-        Brand,
-        null=False,
-        on_delete=models.CASCADE
     )
 
     class Meta:
