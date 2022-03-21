@@ -1,5 +1,6 @@
-from apps.base.models.mixins import *
 from mptt.models import MPTTModel, TreeForeignKey
+
+from apps.base.models.mixins import *
 
 
 class Category(BasicInfoMixin, TimeStampMixin, MPTTModel):

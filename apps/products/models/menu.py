@@ -1,5 +1,6 @@
-from apps.base.models.mixins import *
 from moneyed import CURRENCIES
+
+from apps.base.models.mixins import *
 
 
 class Menu(BasicInfoMixin, TimeStampMixin):

@@ -1,8 +1,9 @@
 """Price lists Serializer view"""
 
+from rest_framework.viewsets import ModelViewSet
+
 from apps.api.serializers.menu import MenuSerializer
 from apps.products.models.menu import Menu
-from rest_framework.viewsets import ModelViewSet
 
 
 class MenuViewSet(ModelViewSet):

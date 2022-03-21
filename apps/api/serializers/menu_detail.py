@@ -1,5 +1,6 @@
-from apps.products.models.menu_detail import MenuDetail
 from rest_framework.serializers import ModelSerializer
+
+from apps.products.models.menu_detail import MenuDetail
 
 
 class MenuDetailSerializer(ModelSerializer):

@@ -1,4 +1,5 @@
 from django.db import models
+
 from apps.companies.models.brand import Brand
 
 
