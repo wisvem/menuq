@@ -8,7 +8,7 @@ class Product(BasicInfoMixin, TimeStampMixin):
         Brand,
         null=False,
         on_delete=models.CASCADE,
-        related_name='menus'
+        related_name='products'
     )
 
     def __str__(self):
