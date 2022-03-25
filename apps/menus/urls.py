@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.urls import path
 from django.views.generic import TemplateView
-from apps.products.views import *
+from apps.menus.views import *
 
 urlpatterns = [
     path('', index, name='index'),

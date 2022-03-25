@@ -3,7 +3,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from apps.api.serializers.category import CategorySerializer
-from apps.products.models.category import Category
+from apps.menus.models.category import Category
 
 
 class CategoryViewSet(ModelViewSet):

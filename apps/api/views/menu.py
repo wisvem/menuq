@@ -3,7 +3,7 @@
 from rest_framework.viewsets import ModelViewSet
 
 from apps.api.serializers.menu import MenuSerializer
-from apps.products.models.menu import Menu
+from apps.menus.models.menu import Menu
 
 
 class MenuViewSet(ModelViewSet):

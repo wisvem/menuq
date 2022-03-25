@@ -1,6 +1,6 @@
 from apps.api.models.mixins import *
 
-from apps.products.models.menu_detail import MenuDetail
+from apps.menus.models.menu_detail import MenuDetail
 
 
 class MenuDetailSerializer(ModelSerializer):

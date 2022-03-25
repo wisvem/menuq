@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 
 INSTALLED_APPS += [
-    'apps.products',
+    'apps.menus',
     'apps.companies',
     'rest_framework',
     'django_extensions',

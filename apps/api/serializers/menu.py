@@ -1,5 +1,5 @@
-from apps.products.models.menu_detail import MenuDetail
-from apps.products.models.menu import Menu
+from apps.menus.models.menu_detail import MenuDetail
+from apps.menus.models.menu import Menu
 from rest_framework.serializers import PrimaryKeyRelatedField
 from apps.api.models.mixins import MixinModelSerializer
 

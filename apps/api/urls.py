@@ -11,7 +11,7 @@ from apps.api.views.company import CompanyViewSet
 from apps.api.views.brand import BrandViewSet
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet)
+router.register(r'menus', ProductViewSet)
 router.register(r'menudetail', MenuDetailViewSet)
 router.register(r'menu', MenuViewSet)
 router.register(r'categories', CategoryViewSet)
