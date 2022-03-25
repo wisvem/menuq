@@ -2,7 +2,7 @@ from .company import Company
 from apps.base.models.mixins import *
 
 
-class Brand(models.Model):
+class Brand(TimeStampMixin):
     name = models.CharField(max_length=1000)
     company = models.ForeignKey(
         Company,
