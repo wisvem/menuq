@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from apps.api.models.mixins import *
 
 from apps.products.models.menu_detail import MenuDetail
 

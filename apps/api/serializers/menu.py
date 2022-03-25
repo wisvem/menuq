@@ -1,9 +1,14 @@
-from rest_framework.serializers import ModelSerializer
-
+from apps.products.models.menu_detail import MenuDetail
 from apps.products.models.menu import Menu
+from rest_framework.serializers import PrimaryKeyRelatedField
+from apps.api.models.mixins import MixinModelSerializer
 
 
-class MenuSerializer(ModelSerializer):
+class MenuSerializer(MixinModelSerializer):
+    menu_details = PrimaryKeyRelatedField(
+        many=True,
+        queryset=MenuDetail.objects.all()
+    )
     class Meta:
         model = Menu
         fields = (
@@ -13,4 +18,5 @@ class MenuSerializer(ModelSerializer):
             'brand',
             'created',
             'updated',
+            'menu_details'
         )

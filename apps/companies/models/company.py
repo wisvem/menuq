@@ -7,6 +7,9 @@ class Company(TimeStampMixin):
     name = models.CharField(max_length=1000)
     country = CountryField(blank_label='(select country)')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         constraints = [
             models.UniqueConstraint(

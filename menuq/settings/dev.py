@@ -8,14 +8,18 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_extensions',
     'mptt',
-    'django_countries'
+    'django_countries',
+    'django_filters'
 ]
 
 # REST FRAMEWORK
 DFC = 'rest_framework.pagination.PageNumberPagination'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': DFC,
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
 }
 
 # Database
@@ -24,7 +28,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'menuq-db',
+        'NAME': 'menuqdb',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

@@ -1,8 +1,15 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import PrimaryKeyRelatedField
+from apps.api.models.mixins import MixinModelSerializer
 from apps.companies.models.company import Company
+from apps.companies.models.brand import Brand
 
 
-class CompanySerializer(ModelSerializer):
+class CompanySerializer(MixinModelSerializer):
+    brands = PrimaryKeyRelatedField(
+        many=True,
+        queryset=Brand.objects.all()
+    )
+
     class Meta:
         model = Company
         fields = (
@@ -11,4 +18,5 @@ class CompanySerializer(ModelSerializer):
             'country',
             'created',
             'updated',
+            'brands'
         )

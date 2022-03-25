@@ -12,6 +12,9 @@ class Menu(BasicInfoMixin, TimeStampMixin):
     brand = models.ForeignKey(
         Brand,
         null=False,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='menus'
     )
-    qr_code = models.ImageField(null=True)
+
+    def __str__(self):
+        return(f'{self.name} {self.brand}')

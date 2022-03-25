@@ -8,7 +8,8 @@ class Brand(models.Model):
         Company,
         null=False,
         blank=False,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='brands'
     )
     created = models.DateTimeField(
         auto_now_add=True
@@ -16,6 +17,10 @@ class Brand(models.Model):
     updated = models.DateTimeField(
         auto_now=True
     )
+
+    def __str__(self):
+        return(f'{self.name} {self.company}')
+
 
     class Meta:
         constraints = [
