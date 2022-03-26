@@ -1,4 +1,5 @@
 from .base import *
+import os
 
 DEBUG = True
 
@@ -10,7 +11,8 @@ INSTALLED_APPS += [
     'django_extensions',
     'mptt',
     'django_countries',
-    'django_simple_bulma'
+    'django_simple_bulma',
+    'widget_tweaks'
 ]
 
 # REST FRAMEWORK
@@ -47,3 +49,16 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+MIDDLEWARE += [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware"
+]
+
+# BULMA_SETTINGS = {
+#   "extensions": [
+#     "all"
+#   ]
+# }

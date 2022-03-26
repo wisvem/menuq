@@ -1,7 +1,23 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block content %}
-  <form method="POST" class="form-group">
-    {% csrf_token %} {{form.as_p}}
-    <button type="submit" class="btn btn-success">Register</button>
+<div class="container box p-6 has-background-light">
+  <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field">
+        <label class="label">{{ field.label }}</label>
+        <div class="control">
+          {{ field|add_class:"input" }}
+        </div>
+      </div>
+    {% endfor %}
+    {% for error in field.errors %}
+      {{ error }}
+    {% endfor %}
+    <button type="submit" class="button">Register</button>
   </form>
+  <br>
+  <p>If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
 {% endblock %}

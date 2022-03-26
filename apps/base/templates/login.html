@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container box p-6 has-background-light">
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button class="button" type="submit">Login</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a href="/register">Create an account</a>.</p>
+</div>
+{% endblock %}
