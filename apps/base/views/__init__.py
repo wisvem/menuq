@@ -1,9 +1,10 @@
-from apps.base.forms import LoginForm, RegisterForm
+from apps.base.forms import RegisterForm
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class Register(View):
@@ -25,10 +26,10 @@ class Register(View):
 
 
 class Login(View):
-    form_class = LoginForm
+    form_class = AuthenticationForm
     template_name = 'login.html'
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         form = self.form_class()
         message = ''
         return render(
@@ -36,8 +37,8 @@ class Login(View):
         )
 
 
-    def post(self, request):
-        form = self.form_class(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
         if form.is_valid():
             user = authenticate(
                 username=form.cleaned_data['username'],
