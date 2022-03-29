@@ -2,9 +2,8 @@ from apps.base.models.mixins import *
 from django_countries.fields import CountryField
 
 
-class Company(TimeStampMixin):
+class Company(BasicInfoMixin, TimeStampMixin):
     company_id = models.CharField(max_length=20)
-    name = models.CharField(max_length=1000)
     country = CountryField(blank_label='(select country)')
 
     def __str__(self):

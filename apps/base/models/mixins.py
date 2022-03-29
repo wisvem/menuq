@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-from django.contrib import admin     
+from django.contrib import admin
+from crum import get_current_user
 
 
 class TimeStampMixin(models.Model):
@@ -25,7 +26,13 @@ class TimeStampMixin(models.Model):
         related_name='%(class)s_updated_by',
         blank=True
     )
-    
+
+    def save(self, *args, **kwargs):
+        user = get_current_user()
+        if not self.pk:
+            self.created_by = user
+        self.updated_by = user
+        super(TimeStampMixin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True
@@ -50,6 +57,11 @@ class BasicInfoMixin(models.Model):
 
 
 class SaveAdminMixin(admin.ModelAdmin):
+    readonly_fields = [
+        'created_by',
+        'updated_by'
+    ]
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.created_by = request.user

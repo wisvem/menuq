@@ -15,6 +15,7 @@ INSTALLED_APPS += [
     'widget_tweaks'
 ]
 
+
 # REST FRAMEWORK
 DFC = 'rest_framework.pagination.PageNumberPagination'
 REST_FRAMEWORK = {
@@ -57,8 +58,6 @@ MIDDLEWARE += [
     "whitenoise.middleware.WhiteNoiseMiddleware"
 ]
 
-# BULMA_SETTINGS = {
-#   "extensions": [
-#     "all"
-#   ]
-# }
+MIDDLEWARE += [
+    'crum.CurrentRequestUserMiddleware'
+]

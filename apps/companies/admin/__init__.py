@@ -5,10 +5,7 @@ from apps.base.models.mixins import SaveAdminMixin
 
 @admin.register(Company)
 class CompanyAdmin(SaveAdminMixin):
-    readonly_fields = [
-        'created_by',
-        'updated_by'
-    ]
+    pass
 
 
 @admin.register(Brand)

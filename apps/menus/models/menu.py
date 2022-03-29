@@ -15,6 +15,7 @@ class Menu(BasicInfoMixin, TimeStampMixin):
         on_delete=models.CASCADE,
         related_name='menus'
     )
+    is_Active = models.BooleanField(default=False)
 
     def __str__(self):
         return(f'{self.name} {self.brand}')

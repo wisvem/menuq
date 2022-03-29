@@ -1,15 +1,17 @@
 from django.contrib import admin
 from ..models.menu_detail import *
 from apps.companies.models.brand import *
+from apps.base.models.mixins import SaveAdminMixin
 
 
 class InLineMenuDetail(admin.TabularInline):
     model = MenuDetail
     extra = 0
+    readonly_fields = ['created_by', 'updated_by']
 
 
 @admin.register(Menu)
-class MenuAdmin(admin.ModelAdmin):
+class MenuAdmin(SaveAdminMixin):
     inlines = [
         InLineMenuDetail
     ]
@@ -18,10 +20,10 @@ class MenuAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdminView(admin.ModelAdmin):
+class CategoryAdminView(SaveAdminMixin):
     list_select_related = True
 
 
 @admin.register(Product)
-class ProductAdminView(admin.ModelAdmin):
+class ProductAdminView(SaveAdminMixin):
     pass

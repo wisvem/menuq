@@ -2,8 +2,7 @@ from .company import Company
 from apps.base.models.mixins import *
 
 
-class Brand(TimeStampMixin):
-    name = models.CharField(max_length=1000)
+class Brand(BasicInfoMixin, TimeStampMixin):
     company = models.ForeignKey(
         Company,
         null=False,
@@ -11,16 +10,15 @@ class Brand(TimeStampMixin):
         on_delete=models.CASCADE,
         related_name='brands'
     )
-    created = models.DateTimeField(
-        auto_now_add=True
-    )
-    updated = models.DateTimeField(
-        auto_now=True
-    )
+    qr_code = models.ImageField(null=True)
 
     def __str__(self):
-        return(f'{self.name} {self.company}')
+        return(f'{self.name}')
 
+    # def save(self, *args, **kwargs):
+    #     if self.company is None:
+    #         self.company = Company.objects.filter(created_by=request.user)[0]
+    #     super(Brand, self).save(*args, **kwargs)
 
     class Meta:
         constraints = [

@@ -3,7 +3,7 @@ from apps.companies.models.brand import Brand
 
 
 class Product(BasicInfoMixin, TimeStampMixin):
-    photo = models.ImageField(null=True)
+    photo = models.ImageField(null=True, blank=True)
     brand = models.ForeignKey(
         Brand,
         null=False,

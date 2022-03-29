@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="container box p-6 has-background-light">
-    <p>{{ message }}</p>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="field">
-            <label class="label">{{ form.username.label }}</label>
-            <div class="control">
-                {{ form.username|add_class:"input" }}
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">{{ form.password.label }}</label>
-            <div class="control">
-                {{ form.password|add_class:"input" }}
-            </div>
-        </div>
-        <button class="button" type="submit">Login</button>
-    </form>
-    <br>
-    <p>Don't have an account? <a href="/register">Create an account</a>.</p>
+<div>
+  <p>{{ message }}</p>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      <label class="label">{{ form.username.label }}</label>
+      <div class="control">
+        {{ form.username }}
+      </div>
+    </div>
+    <div>
+      <label>{{ form.password.label }}</label>
+      <div class="control">
+        {{ form.password }}
+      </div>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <br>
+  <p>Don't have an account? <a href="/register">Create an account</a>.</p>
 </div>
 {% endblock %}
