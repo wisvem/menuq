@@ -15,8 +15,3 @@ def results(request, menu_id):
 def create(request, menu_id):
     return HttpResponse("You're on menu %s." % menu_id)
 
-class IndexView(View):
-    def get(self, request):
-        return HttpResponse(
-            Company.objects.all()
-        )

@@ -4,8 +4,5 @@ from django.views.generic import TemplateView
 from apps.menus.views import *
 
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('<int:menu_id>/', detail, name='detail'),
-    path('<int:menu_id>/results/', results, name='results'),
-    path('<int:menu_id>/create/', create, name='create'),
+    path('<int:brand_id>/', create, name='menu'),
 ]
