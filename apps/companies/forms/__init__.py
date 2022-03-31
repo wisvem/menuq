@@ -1,1 +1,2 @@
-from . brand import BrandForm
+from .brand import BrandForm
+from .company import CompanyForm

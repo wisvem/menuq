@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
+{% include "partials/appnavbar.html" %}
 <div>
   <ol>
     {% for brand in brands %}
@@ -12,37 +13,6 @@
       </ol></li>
     {% endfor %}
   </ol>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createBrandModal">
-    Create new brand
-  </button>
-  <!-- Modal -->
-  <div class="modal fade" id="createBrandModal" tabindex="-1" aria-labelledby="createBrandModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="createBrandModalLabel">New brand</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body"> 
-            {% csrf_token %}
-            <label>{{ form.name.label }}</label>
-            <div>{{ form.name }}</div>
-            <label>{{ form.description.label }}</label>
-            <div>{{ form.description }}</div>
-            {{ form.company.as_hidden }}
-            {% comment %}<label>{{ form.company.label }}</label>
-            <div>{{ form.company }}</div>
-             <input type="hidden" value="{{ user.get_username }}" name="comapny"> {% endcomment %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+  {% include "partials/modalcreate.html" with object="brand" %}
 </div>
 {% endblock %}

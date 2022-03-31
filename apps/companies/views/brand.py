@@ -1,21 +1,19 @@
 from apps.companies.models.brand import Brand
 from apps.companies.models.company import Company
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from apps.companies.forms import BrandForm
 from django.views.generic.detail import SingleObjectTemplateResponseMixin
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
-from django.views.generic import UpdateView
-from django.urls import reverse
 
 
 class BrandView(ListView, LoginRequiredMixin, UpdateView):
     template_name = 'brands.html'
     model = Brand
-    #fields = ['name', 'description', 'company']
     form_class = BrandForm
+    success_url='/companies/brands'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

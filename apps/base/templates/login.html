@@ -2,24 +2,28 @@
 {% load widget_tweaks %}
 {% block content %}
 <div>
-  <p>{{ message }}</p>
-  <form method="POST">
-    {% csrf_token %}
-    <div>
-      <label class="label">{{ form.username.label }}</label>
-      <div class="control">
-        {{ form.username }}
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+  {% else %}
+    <p>{{ message }}</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div>
+        <label class="label">{{ form.username.label }}</label>
+        <div class="control">
+          {{ form.username }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label>{{ form.password.label }}</label>
-      <div class="control">
-        {{ form.password }}
+      <div>
+        <label>{{ form.password.label }}</label>
+        <div class="control">
+          {{ form.password }}
+        </div>
       </div>
-    </div>
-    <button type="submit">Login</button>
-  </form>
-  <br>
-  <p>Don't have an account? <a href="/register">Create an account</a>.</p>
+      <button type="submit">Login</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a href="/register">Create an account</a>.</p>
+  {% endif %}
 </div>
 {% endblock %}

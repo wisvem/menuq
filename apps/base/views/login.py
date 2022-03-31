@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Login(View):
@@ -17,7 +18,6 @@ class Login(View):
         return render(
             request, self.template, {'form': form, 'message': message}
         )
-
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(data=request.POST)
@@ -35,3 +35,8 @@ class Login(View):
             self.template,
             {'form': form, 'message': message}
         )
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('/companies')
+        return super().dispatch(*args, **kwargs)
