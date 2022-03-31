@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.urls import path
 from django.views.generic import TemplateView
 from apps.menus.views import *
+from apps.menus.views import ActiveMenuView
+
 
 urlpatterns = [
-    path('<int:brand_id>/', create, name='menu'),
+    path('active/<brand_id>', ActiveMenuView.as_view()),
 ]

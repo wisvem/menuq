@@ -2,17 +2,11 @@
 {% load widget_tweaks %}
 {% block content %}
 <div>
-  <ol>
-    {% for company in companies %}
-      <li>
-        <ol>
-          {{ company }}
-          {% for brand in company.brands.all %}
-            <li>{{ brand }}</li>
-          {% endfor %}
-        </ol>
-      </li>
-    {% endfor %}
-  </ol>
+  {% comment %} <h1>{{ menu.name }}<h1>
+  <h3>{{ menu.description }}</h3> {% endcomment %}
+  {{ menu }}
+  {% for product in menu.menu_details.all %}
+    <div>{{ product }}</div>
+  {% endfor %}
 </div>
 {% endblock %}

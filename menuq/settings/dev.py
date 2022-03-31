@@ -9,10 +9,9 @@ INSTALLED_APPS += [
     'apps.base',
     'rest_framework',
     'django_extensions',
-    'mptt',
     'django_countries',
-    'django_simple_bulma',
-    'widget_tweaks'
+    'widget_tweaks',
+    'debug_toolbar'
 ]
 
 
@@ -55,9 +54,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MIDDLEWARE += [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware"
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'crum.CurrentRequestUserMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
-MIDDLEWARE += [
-    'crum.CurrentRequestUserMiddleware'
+INTERNAL_IPS = [
+    "127.0.0.1"
 ]
