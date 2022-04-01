@@ -16,9 +16,16 @@
           {% csrf_token %}
           <label>{{ form.name.label }}</label>
           <div>{{ form.name }}</div>
+          {% if object == "company" %}
+            <label>{{ form.company_id.label }}</label>
+            <div>{{ form.company_id }}</div>
+            <label>{{ form.country.label }}</label>
+            <div>{{ form.country }}</div>
+          {% else %}
+            {{ form.company.as_hidden }}
+          {% endif %}
           <label>{{ form.description.label }}</label>
           <div>{{ form.description }}</div>
-          {{ form.company.as_hidden }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
