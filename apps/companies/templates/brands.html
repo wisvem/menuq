@@ -3,16 +3,20 @@
 {% block content %}
 {% include "partials/appnavbar.html" %}
 <div>
-  <ol>
-    {% for brand in brands %}
-      <li><ol>
-        {{ brand }}
-        {% for menu in brand.menus.all %}
-          <li>{{ menu }}</li>
-        {% endfor %}
-      </ol></li>
-    {% endfor %}
-  </ol>
-  {% include "partials/modalcreate.html" with object="brand" %}
+  {% if not form.company.initial %}
+    <a class"btn" href={% url "companies" %}>Create a company first</a>
+  {% else %}
+    <ol>
+      {% for brand in brands %}
+        <li><ol>
+          {{ brand }}
+          {% for menu in brand.menus.all %}
+            <li>{{ menu }}</li>
+          {% endfor %}
+        </ol></li>
+      {% endfor %}
+    </ol>
+    {% include "partials/modalcreate.html" with object="brand" %}
+  {% endif %}
 </div>
 {% endblock %}

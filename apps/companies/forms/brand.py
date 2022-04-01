@@ -15,6 +15,8 @@ class BrandForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
         self.user = user
-        user_company = Company.objects.filter(created_by=user)[0]
+        #TODO The next lines of code has to be changed 
+        # when multiple compnay is allowed
+        user_company = Company.objects.filter(created_by=user).first()
         super(BrandForm, self).__init__(*args, **kwargs)
         self.initial['company'] = user_company
