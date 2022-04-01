@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-{% include "partials/appnavbar.html" %}
-<div>
+  {% include "partials/appnavbar.html" %}
   {% if not form.company.initial %}
     <a class"btn" href={% url "companies" %}>Create a company first</a>
   {% else %}
-    <ol>
+    <div class="row">
       {% for brand in brands %}
-        <li><ol>
-          {{ brand }}
-          {% for menu in brand.menus.all %}
-            <li>{{ menu }}</li>
-          {% endfor %}
-        </ol></li>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ brand.name }}</h5>
+              <p class="card-text">{{ brand.description }}</p>
+              <a href={% url "brands" %} class="btn btn-primary">See menus</a>
+            </div>
+          </div>
+        </div>
       {% endfor %}
-    </ol>
-    {% include "partials/modalcreate.html" with object="brand" %}
+    </div>
+    {% include "partials/modalcreate.html" with object="menu" %}
   {% endif %}
-</div>
 {% endblock %}
