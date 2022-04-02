@@ -65,3 +65,8 @@ INTERNAL_IPS = [
 
 LOGIN_REDIRECT_URL = "companies"
 LOGOUT_REDIRECT_URL = "/"
+
+ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1'
+]
