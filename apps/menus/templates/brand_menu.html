@@ -9,7 +9,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ menu.name }}</h5>
             <p class="card-text">{{ menu.description }}</p>
-            <a href={% url "brands" %} class="btn btn-primary">Details</a>
+            <a href={% url "menu-detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
           </div>
         </div>
       </div>

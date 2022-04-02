@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+{% include "partials/appnavbar.html" %}
+<div>
+  {{ menu }}
+  {% for product in menu.menu_details.all %}
+    <div>{{ product }}</div>
+  {% endfor %}
+</div>
+{% endblock %}
