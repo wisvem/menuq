@@ -3,12 +3,12 @@ from django.views.generic import CreateView
 from apps.menus.form import *
 
 
-class MenuView(CreateView):
-    form_class = MenuForm
+class CreateMenuView(CreateView):
+    form_class = CreateMenuForm
     template_name = "menu_form.html"
 
     def get_context_data(self, **kwargs):
-        context = super(MenuView, self).get_context_data(**kwargs)
+        context = super(CreateMenuView, self).get_context_data(**kwargs)
         context ['menu_detail_formset'] = MenuDetailInlineFormset()
         return context
 

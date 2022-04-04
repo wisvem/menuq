@@ -1,2 +1,2 @@
-from .brand import BrandForm
-from .company import CompanyForm
+from .brand_from import BrandForm
+from .company_form import CompanyForm

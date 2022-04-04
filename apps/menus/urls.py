@@ -34,7 +34,7 @@ urlpatterns = [
     ),
     path(
         'menuedit/<brand_id>',
-        MenuView.as_view(),
+        CreateMenuView.as_view(),
         name='menu-edit'
     )
 ]

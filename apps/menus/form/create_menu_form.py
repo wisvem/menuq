@@ -3,7 +3,7 @@ from apps.menus.models.menu_detail import *
 from django import forms
 
 
-class MenuForm(forms.ModelForm):
+class CreateMenuForm(forms.ModelForm):
     brand = forms.HiddenInput()
 
     class Meta:
@@ -22,7 +22,7 @@ class MenuForm(forms.ModelForm):
         self.user = user
         self.brand = brand
         user_brand = Brand.objects.filter(brand=self.brand)
-        super(MenuForm, self).__init__(*args, **kwargs)
+        super(CreateMenuForm, self).__init__(*args, **kwargs)
         self.initial['brand'] = user_brand
 
 
