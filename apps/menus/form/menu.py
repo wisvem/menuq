@@ -4,16 +4,26 @@ from django import forms
 
 
 class MenuForm(forms.ModelForm):
+    brand = forms.HiddenInput()
 
     class Meta:
         model = Menu
         fields = {
             'brand',
             'name',
-            'currency'
-            'description',
-            'is_active'
+            'currency',
+            'is_active',
+            'description'
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.get('user')
+        brand = kwargs.get('current_brand')
+        self.user = user
+        self.brand = brand
+        user_brand = Brand.objects.filter(brand=self.brand)
+        super(MenuForm, self).__init__(*args, **kwargs)
+        self.initial['brand'] = user_brand
 
 
 class MenuDetailForm(forms.ModelForm):

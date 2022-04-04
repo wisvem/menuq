@@ -2,11 +2,9 @@ from apps.companies.models.brand import Brand
 from apps.companies.models.company import Company
 from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.views.generic.edit import CreateView
 from apps.companies.forms import BrandForm
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
 
 class BrandView(ListView, LoginRequiredMixin, UpdateView):

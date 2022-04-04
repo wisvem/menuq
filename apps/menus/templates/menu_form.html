@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+  {% include "partials/appnavbar.html" %}
+  <div class="container mt-4">
+    <form method="post">
+      {% csrf_token %}
+      <div>
+        <h4>Create Menu</h4>
+        <div>
+          {{ form.non_form_errors }}
+          <label>{{ form.name.label }}</label
+          <div>{{ form.name }}</div
+          <label>{{ form.description.label }}</label>
+          <div>{{ form.description }}</div>
+          <label>{{ form.currency.label }}</label>
+          <div>{{ form.currency }}</div>
+          <div>{{ form.is_active }} {{ form.is_active.label }}</div>
+          
+        </div>
+        <div>
+          <h5>Add Products</h5>
+          {{ menu_detail_formset.non_form_errors }}
+          {{ menu_detail_formset.management_form }}
+          {% for form in menu_detail_formset %}
+            <div>
+              {{ form.category }} {{form.product }} {{ form.price }} {{ form.DELETE }} Delete?
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

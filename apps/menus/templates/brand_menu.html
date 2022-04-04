@@ -15,6 +15,15 @@
       </div>
     {% endfor %}
   </div>
-  {% include "partials/modalcreate.html" with object="menu" %}
+  <br>
+  {% if brand %}
+  {% comment %} 
+    <form action={% url "menu-edit" %} method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="current_brand" value="{{ brand.id }}">
+      <input type="submit" class="btn btn-primary" value="Create new menu" />
+    </form>
+    {% endcomment %}
+    <a class="btn btn-primary" href={% url "menu-edit" brand.id %}>Create new menu</a> 
+  {% endif %}
 {% endblock %}
-

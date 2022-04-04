@@ -12,11 +12,11 @@ class BrandMenuView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menus'] = self.get_queryset()
-        #context['brand'] = self.brand
+        if hasattr(self, 'brand'):
+            context['brand'] = self.brand
         return context
 
     def get_queryset(self):
-        #self.brand = Brand.objects.get(pk=self.kwargs['brand_id'])
         self.user = self.request.user
         if self.kwargs.get('brand_id', None) is None:
             return Menu.objects.filter(created_by=self.user)

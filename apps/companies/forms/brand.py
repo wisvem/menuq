@@ -13,7 +13,7 @@ class BrandForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
+        user = kwargs.get('user')
         self.user = user
         #TODO The next lines of code has to be changed 
         # when multiple compnay is allowed

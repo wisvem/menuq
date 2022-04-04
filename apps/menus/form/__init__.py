@@ -1,1 +1,1 @@
-from .menu import MenuForm
+from .menu import *
