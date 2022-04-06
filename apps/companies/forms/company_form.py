@@ -13,6 +13,6 @@ class CompanyForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.get('user')
+        user = kwargs.pop('user')
         self.user = user
         super(CompanyForm, self).__init__(*args, **kwargs)

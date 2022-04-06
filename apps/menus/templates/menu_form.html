@@ -3,12 +3,13 @@
 {% block content %}
   {% include "partials/appnavbar.html" %}
   <div class="container mt-4">
-    <form method="post">
+    {% comment %} <form method="post">
       {% csrf_token %}
       <div>
         <h4>Create Menu</h4>
         <div>
           {{ form.non_form_errors }}
+          {{ form.brand.as_hidden }}
           <label>{{ form.name.label }}</label
           <div>{{ form.name }}</div
           <label>{{ form.description.label }}</label>
@@ -16,13 +17,12 @@
           <label>{{ form.currency.label }}</label>
           <div>{{ form.currency }}</div>
           <div>{{ form.is_active }} {{ form.is_active.label }}</div>
-          
         </div>
         <div>
           <h5>Add Products</h5>
-          {{ menu_detail_formset.non_form_errors }}
-          {{ menu_detail_formset.management_form }}
-          {% for form in menu_detail_formset %}
+          {{ menu_detail_form.non_form_errors }}
+          {{ menu_detail_form.management_form }}
+          {% for form in menu_detail_form %}
             <div>
               {{ form.category }} {{form.product }} {{ form.price }} {{ form.DELETE }} Delete?
             </div>
@@ -32,6 +32,13 @@
       <div>
         <button type="submit">Submit</button>
       </div>
-    </form>
+    </form> {% endcomment %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% for form in fromset %}
+       {{form}}
+      {% endfor %} 
+  <input type="submit" name="Submit">
+  </form>
   </div>
 {% endblock %}

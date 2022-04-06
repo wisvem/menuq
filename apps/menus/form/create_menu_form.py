@@ -1,6 +1,8 @@
 from django.forms import inlineformset_factory
 from apps.menus.models.menu_detail import *
 from django import forms
+from apps.companies.models.brand import Brand
+from django.http import Http404
 
 
 class CreateMenuForm(forms.ModelForm):
@@ -17,13 +19,15 @@ class CreateMenuForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.get('user')
-        brand = kwargs.get('current_brand')
+        user = kwargs.pop('user')
+        brand = kwargs.pop('brand')
         self.user = user
         self.brand = brand
-        user_brand = Brand.objects.filter(brand=self.brand)
+        brand = Brand.objects.get(pk=self.brand, created_by=self.user)
+        if not brand:
+            raise Http404()
         super(CreateMenuForm, self).__init__(*args, **kwargs)
-        self.initial['brand'] = user_brand
+        self.initial['brand'] = brand
 
 
 class MenuDetailForm(forms.ModelForm):
@@ -38,9 +42,10 @@ class MenuDetailForm(forms.ModelForm):
         }
 
 
-MenuDetailInlineFormset = inlineformset_factory(
+MenuDetailFormset = inlineformset_factory(
     Menu,
     MenuDetail,
     form=MenuDetailForm,
-    extra=5,
+    extra=1,
+    can_delete=True
 )
