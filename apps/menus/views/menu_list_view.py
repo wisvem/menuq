@@ -1,11 +1,11 @@
-from django.views.generic import ListView
-from django.shortcuts import render, redirect
-from django.views import View
-from apps.menus.models.menu import *
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.views.generic import ListView
 
-class BrandMenuView(ListView):
+from apps.menus.models.menu import *
+
+
+class MenuListView(ListView):
     template_name = 'brand_menu.html'
     model = Menu
 

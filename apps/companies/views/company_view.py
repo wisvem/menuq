@@ -1,15 +1,15 @@
-from apps.companies.models.company import Company
-from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
-from django.views import View
+from django.views.generic import ListView, UpdateView
+
 from apps.companies.forms import CompanyForm
+from apps.companies.models.company import Company
+
 
 class CompanyView(ListView, LoginRequiredMixin, UpdateView):
     template_name = 'companies.html'
     model = Company
     form_class = CompanyForm
-    success_url='/companies'
+    success_url = '/companies'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

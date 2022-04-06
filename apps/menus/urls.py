@@ -1,40 +1,37 @@
-from django.http import HttpResponse
 from django.urls import path
-from django.views.generic import TemplateView
-from apps.menus.views import *
 from apps.menus.views import (
-    ActiveMenuView,
-    BrandMenuView,
+    MenuActiveView,
+    MenuListView,
     MenuDetailView,
-
+    MenuCreateView
 )
 
 
 urlpatterns = [
     path(
         'active/<brand_id>',
-        ActiveMenuView.as_view(),
-        name='active-menu'
+        MenuActiveView.as_view(),
+        name='active_menu'
     ),
     path(
         'm/<brand_id>',
-        BrandMenuView.as_view(),
-        name='brand-menus'
+        MenuListView.as_view(),
+        name='list_menus'
     ),
-    # this patern is activated whrn no bran_id is passed
+    # this pattern is activated when no bran_id is passed
     path(
         'm/',
-        BrandMenuView.as_view(),
-        name='brand-menus'
+        MenuListView.as_view(),
+        name='list_menus'
     ),
     path(
         'm/<brand_id>/detail/<menu_id>',
         MenuDetailView.as_view(),
-        name='menu-detail'
+        name='menu_detail'
     ),
     path(
-        'menuedit/<brand_id>',
-        CreateMenuView.as_view(),
-        name='menu-edit'
+        'edit/<brand_id>',
+        MenuCreateView.as_view(),
+        name='menu_edit'
     )
 ]

@@ -5,7 +5,7 @@ from apps.companies.models.brand import Brand
 from django.http import Http404
 
 
-class CreateMenuForm(forms.ModelForm):
+class MenuCreateForm(forms.ModelForm):
     brand = forms.HiddenInput()
 
     class Meta:
@@ -26,7 +26,7 @@ class CreateMenuForm(forms.ModelForm):
         brand = Brand.objects.get(pk=self.brand, created_by=self.user)
         if not brand:
             raise Http404()
-        super(CreateMenuForm, self).__init__(*args, **kwargs)
+        super(MenuCreateForm, self).__init__(*args, **kwargs)
         self.initial['brand'] = brand
 
 

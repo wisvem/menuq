@@ -1,16 +1,16 @@
-from apps.menus.models.menu_detail import *
-from django.views.generic import CreateView
-from apps.menus.form import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView
+
+from apps.menus.form import *
 
 
-class CreateMenuView(CreateView, LoginRequiredMixin):
-    form_class = CreateMenuForm
+class MenuCreateView(CreateView, LoginRequiredMixin):
+    form_class = MenuCreateForm
     template_name = "menu_form.html"
 
     def get_context_data(self, **kwargs):
-        context = super(CreateMenuView, self).get_context_data(**kwargs)
-        context ['menu_detail_form'] = MenuDetailFormset()
+        context = super(MenuCreateView, self).get_context_data(**kwargs)
+        context['menu_detail_form'] = MenuDetailFormset()
         brand = Brand.objects.get(pk=self.kwargs.get('brand_id'))
         for form in context['menu_detail_form']:
             form.fields['category'].queryset = Category.objects.filter(brand=brand)
@@ -26,7 +26,7 @@ class CreateMenuView(CreateView, LoginRequiredMixin):
             return self.form_valid(form, menu_detail_form)
         else:
             return self.form_invalid(form, menu_detail_form)
-    
+
     def form_valid(self, form, menu_detail_form):
         self.object = form.save(commit=False)
         self.object.save()
@@ -46,7 +46,7 @@ class CreateMenuView(CreateView, LoginRequiredMixin):
         )
 
     def get_form_kwargs(self):
-        kwargs = super(CreateMenuView, self).get_form_kwargs()
+        kwargs = super(MenuCreateView, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         kwargs.update({'brand': self.kwargs.get('brand_id')})
         return kwargs

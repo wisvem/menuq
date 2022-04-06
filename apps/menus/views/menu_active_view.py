@@ -1,10 +1,9 @@
 from django.views.generic import ListView
-from django.shortcuts import render, redirect
-from django.views import View
+
 from apps.menus.models.menu import *
 
 
-class ActiveMenuView(ListView):
+class MenuActiveView(ListView):
     template_name = 'active_menu.html'
     model = Menu
 

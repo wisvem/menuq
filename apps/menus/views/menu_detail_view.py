@@ -1,7 +1,8 @@
-from apps.menus.models.menu_detail import *
-from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from django.views.generic import ListView
+
+from apps.menus.models.menu_detail import *
 
 
 class MenuDetailView(ListView, LoginRequiredMixin):

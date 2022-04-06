@@ -1,17 +1,15 @@
-from apps.companies.models.brand import Brand
-from apps.companies.models.company import Company
-from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, reverse
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView, UpdateView
+
 from apps.companies.forms import BrandForm
+from apps.companies.models.brand import Brand
 
 
 class BrandView(ListView, LoginRequiredMixin, UpdateView):
     template_name = 'brands.html'
     model = Brand
     form_class = BrandForm
-    success_url='/companies/brands'
+    success_url = '/companies/brands'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
