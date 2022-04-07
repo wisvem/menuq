@@ -17,5 +17,5 @@
   </div>
   <br>
   <a href={% url "menu_edit" menu.id %} class="btn btn-primary">Edit Menu</a>
-  <a href={% url "list_menus" menu.brand_id %} class="btn btn-secondary">Show all Menus</a>
+  <a href={% url "list_menus" menu.brand_id %} class="btn btn-secondary">Show {{ menu.brand.name }} Menus</a>
 {% endblock %}
