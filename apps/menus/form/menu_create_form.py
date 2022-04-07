@@ -1,8 +1,10 @@
-from django.forms import inlineformset_factory
-from apps.menus.models.menu_detail import *
 from django import forms
-from apps.companies.models.brand import Brand
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms import inlineformset_factory
+
 from django.http import Http404
+from apps.companies.models.brand import Brand
+from apps.menus.models.menu_detail import *
 
 
 class MenuCreateForm(forms.ModelForm):
@@ -23,8 +25,9 @@ class MenuCreateForm(forms.ModelForm):
         brand = kwargs.pop('brand')
         self.user = user
         self.brand = brand
-        brand = Brand.objects.get(pk=self.brand, created_by=self.user)
-        if not brand:
-            raise Http404()
-        super(MenuCreateForm, self).__init__(*args, **kwargs)
-        self.initial['brand'] = brand
+        try:
+            brand = Brand.objects.get(pk=self.brand, created_by=self.user)
+            super(MenuCreateForm, self).__init__(*args, **kwargs)
+            self.initial['brand'] = brand
+        except ObjectDoesNotExist:
+            pass
