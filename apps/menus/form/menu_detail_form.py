@@ -15,14 +15,11 @@ class MenuDetailForm(forms.ModelForm):
             'product',
             'price'
         }
+    
+
 
 MenuDetailFormset = inlineformset_factory(
     Menu,
     MenuDetail,
-    fields={
-        'menu',
-        'category',
-        'product',
-        'price'
-    }
+    form=MenuDetailForm
 )
