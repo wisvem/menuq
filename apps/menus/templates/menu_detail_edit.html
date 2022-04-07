@@ -14,12 +14,12 @@
     {{ form.management_form }}
     {{ form.non_form_errors }}
 
-    <h3>Update Menu</h3>
-    {% for book_form in form.forms %}
+    <h3>{{ form.name }}</h3>
+    {% for detail_form in form.forms %}
       <hr>
       <h5>
-        {% if book_form.instance.id %}
-          Product: {{ book_form.instance.name }}
+        {% if detail_form.instance.id %}
+          Product: {{ detail_form.instance.product.name }}
         {% else %}
           {% if form.forms|length > 1 %}
             Add another product
@@ -28,11 +28,11 @@
           {% endif %}
         {% endif %}
       </h5>
-      {% for hidden_field in book_form.hidden_fields %}
+      {% for hidden_field in detail_form.hidden_fields %}
         {{ hidden_field.errors }}
       {% endfor %}
       <table>
-        {{ book_form.as_table }}
+        {{ detail_form.as_table }}
       </table>
     {% endfor %}
     <hr>
