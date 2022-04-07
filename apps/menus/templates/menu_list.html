@@ -9,7 +9,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ menu.name }}</h5>
             <p class="card-text">{{ menu.description }}</p>
-            <a href={% url "menu-detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
+            <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
           </div>
         </div>
       </div>
@@ -17,13 +17,6 @@
   </div>
   <br>
   {% if brand %}
-  {% comment %} 
-    <form action={% url "menu-edit" %} method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="current_brand" value="{{ brand.id }}">
-      <input type="submit" class="btn btn-primary" value="Create new menu" />
-    </form>
-    {% endcomment %}
-    <a class="btn btn-primary" href={% url "menu-edit" brand.id %}>Create new menu</a> 
+    {% include "partials/modalcreate.html" with object="menu" %}
   {% endif %}
 {% endblock %}

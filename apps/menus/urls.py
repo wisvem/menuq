@@ -3,18 +3,18 @@ from apps.menus.views import (
     MenuActiveView,
     MenuListView,
     MenuDetailView,
-    MenuCreateView
+    MenuDetailEditView
 )
 
 
 urlpatterns = [
     path(
-        'active/<brand_id>',
+        'active/<brand_id>/',
         MenuActiveView.as_view(),
         name='active_menu'
     ),
     path(
-        'm/<brand_id>',
+        'm/<brand_id>/',
         MenuListView.as_view(),
         name='list_menus'
     ),
@@ -25,13 +25,13 @@ urlpatterns = [
         name='list_menus'
     ),
     path(
-        'm/<brand_id>/detail/<menu_id>',
+        'm/<brand_id>/detail/<menu_id>/',
         MenuDetailView.as_view(),
         name='menu_detail'
     ),
     path(
-        'edit/<brand_id>',
-        MenuCreateView.as_view(),
+        'm/<pk>/edit/',
+        MenuDetailEditView.as_view(),
         name='menu_edit'
     )
 ]

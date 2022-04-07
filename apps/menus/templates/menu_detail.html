@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-{% include "partials/appnavbar.html" %}
-<div>
-  {{ menu }}
-  {% for product in menu.menu_details.all %}
-    <div>{{ product }}</div>
-  {% endfor %}
-</div>
+  {% include "partials/appnavbar.html" %}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div>
+    {{ menu }}
+    {% for product in menu.menu_details.all %}
+      <div>{{ product }}</div>
+    {% endfor %}
+  </div>
+  <br>
+  <a href={% url "menu_edit" menu.id %} class="btn btn-primary">Edit Menu</a>
+  <a href={% url "list_menus" menu.brand_id %} class="btn btn-secondary">Show all Menus</a>
 {% endblock %}

@@ -1,13 +1,18 @@
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 
+from apps.menus.form import MenuCreateForm
 from apps.menus.models.menu import *
 
 
-class MenuListView(ListView):
-    template_name = 'brand_menu.html'
+class MenuListView(ListView, LoginRequiredMixin, UpdateView):
+    template_name = 'menu_list.html'
     model = Menu
+    form_class = MenuCreateForm
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,3 +29,34 @@ class MenuListView(ListView):
         if self.user.id is not self.brand.created_by.id:
             raise Http404()
         return Menu.objects.filter(brand=self.brand, created_by=self.user)
+
+
+    def get_object(self, queryset=None):
+        try:
+            return super(MenuListView, self).get_object(queryset)
+        except AttributeError:
+            return None
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super(MenuListView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super(MenuListView, self).post(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(MenuListView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        kwargs.update({'brand': self.kwargs.get('brand_id')})
+        return kwargs
+
+    def form_valid(self, form):
+
+        messages.add_message(
+            self.request, 
+            messages.SUCCESS,
+            'The menu has been created correctly'
+        )
+
+        return super().form_valid(form)

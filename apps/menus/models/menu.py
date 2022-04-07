@@ -1,3 +1,5 @@
+from django.urls import reverse
+
 from moneyed import CURRENCIES
 
 from apps.base.models.mixins import *
@@ -19,3 +21,12 @@ class Menu(BasicInfoMixin, TimeStampMixin):
 
     def __str__(self):
         return(f'{self.name} {self.brand}')
+
+    def get_absolute_url(self):
+        return reverse(
+            "menu_detail", kwargs={
+                "brand_id": self.brand_id,
+                "menu_id": self.id
+            }
+        )
+    

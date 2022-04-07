@@ -11,11 +11,11 @@ class MenuCreateForm(forms.ModelForm):
     class Meta:
         model = Menu
         fields = {
-            'brand',
             'name',
             'currency',
             'is_active',
-            'description'
+            'description',
+            'brand',
         }
 
     def __init__(self, *args, **kwargs):
@@ -28,24 +28,3 @@ class MenuCreateForm(forms.ModelForm):
             raise Http404()
         super(MenuCreateForm, self).__init__(*args, **kwargs)
         self.initial['brand'] = brand
-
-
-class MenuDetailForm(forms.ModelForm):
-    model = MenuDetail
-
-    class Meta:
-        fields = {
-            'menu',
-            'category',
-            'product',
-            'price'
-        }
-
-
-MenuDetailFormset = inlineformset_factory(
-    Menu,
-    MenuDetail,
-    form=MenuDetailForm,
-    extra=1,
-    can_delete=True
-)

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+  {% include "partials/appnavbar.html" %}
+  <form action="" method="post" enctype="multipart/form-data">
+
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ form.management_form }}
+    {{ form.non_form_errors }}
+
+    <h3>Update Menu</h3>
+    {% for book_form in form.forms %}
+      <hr>
+      <h5>
+        {% if book_form.instance.id %}
+          Product: {{ book_form.instance.name }}
+        {% else %}
+          {% if form.forms|length > 1 %}
+            Add another product
+          {% else %}
+            Add a product
+          {% endif %}
+        {% endif %}
+      </h5>
+      {% for hidden_field in book_form.hidden_fields %}
+        {{ hidden_field.errors }}
+      {% endfor %}
+      <table>
+        {{ book_form.as_table }}
+      </table>
+    {% endfor %}
+    <hr>
+    <p>
+      <button type="submit" value="Update menu" class="btn btn-primary">Update</button>
+      <a href="{{ menu.get_absolute_url  }}" class="btn btn-secondary">Cancel</a>
+    </p>
+  </form>
+{% endblock %}

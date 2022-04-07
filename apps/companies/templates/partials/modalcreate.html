@@ -23,8 +23,14 @@
             <div>{{ form.company_id }}</div>
             <label>{{ form.country.label }}</label>
             <div>{{ form.country }}</div>
-          {% else %}
+          {% elif object == "brand" %}
             {{ form.company.as_hidden }}
+          {% elif object == "menu" %}
+            <label>{{ form.currency.label }}</label>
+            <div>{{ form.currency }}</div>
+            <label>{{ form.is_active.label }}</label>
+            <div>{{ form.is_Active }}</div>
+            {{ form.brand.as_hidden }}
           {% endif %}
           <label>{{ form.description.label }}</label>
           <div>{{ form.description }}</div>
