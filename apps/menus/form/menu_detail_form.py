@@ -13,7 +13,6 @@ class MenuDetailForm(BaseInlineFormSet):
         for form in self.forms:
             for field, value in form.fields.items():
                 if hasattr(value, 'queryset') and field is not 'id':
-                    print(value.queryset)
                     value.queryset = value.queryset.filter(brand=self.brand)
 
 

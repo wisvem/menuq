@@ -16,7 +16,6 @@ def generate_qr(sender, instance, **kwargs):
         # build image path
         qr_url = f'http://{request.META["HTTP_HOST"]}'
         qr_url += f'/menu/active/{instance.id}'
-        print("la url de la image", qr_url)
         # create qr code
         qr = qrcode.QRCode(
             version=1,
