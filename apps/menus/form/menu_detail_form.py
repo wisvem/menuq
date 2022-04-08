@@ -10,7 +10,6 @@ class MenuDetailForm(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super(MenuDetailForm, self).__init__(*args, **kwargs)
         self.brand = self.instance.brand
-        print("Aqui, donde nace la cevada")
         for form in self.forms:
             for field, value in form.fields.items():
                 if hasattr(value, 'queryset') and field is not 'id':
