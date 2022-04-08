@@ -43,14 +43,3 @@ class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
                 "menu_id": self.object.pk
             }
         )
-
-    def get_queryset(self):
-        return super().get_queryset()
-    
-    # def get_form_kwargs(self):
-    #     kwargs = super(MenuDetailEditView, self).get_form_kwargs()
-    #     kwargs.update({'user': self.request.user})
-    #     kwargs.update({'brand': self.kwargs.get('brand_id')})
-    #     return kwargs
-
-

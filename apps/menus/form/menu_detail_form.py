@@ -1,28 +1,31 @@
 from django import forms
-from django.forms.models import inlineformset_factory
+from django.forms import BaseInlineFormSet, inlineformset_factory
 
 from apps.menus.models.menu import Menu
 from apps.menus.models.menu_detail import MenuDetail
 
 
-class MenuDetailForm(forms.ModelForm):
-    model = MenuDetail
+class MenuDetailForm(BaseInlineFormSet):
 
-    class Meta:
-        fields = {
-            'menu',
-            'category',
-            'product',
-            'price'
-        }
-    
     def __init__(self, *args, **kwargs):
         super(MenuDetailForm, self).__init__(*args, **kwargs)
-        print(kwargs)
+        self.brand = self.instance.brand
+        print("Aqui, donde nace la cevada")
+        for form in self.forms:
+            for field, value in form.fields.items():
+                if hasattr(value, 'queryset') and field is not 'id':
+                    print(value.queryset)
+                    value.queryset = value.queryset.filter(brand=self.brand)
 
 
 MenuDetailFormset = inlineformset_factory(
     Menu,
     MenuDetail,
-    form=MenuDetailForm
+    fields={
+        'menu',
+        'category',
+        'product',
+        'price'
+    },
+    formset=MenuDetailForm
 )
