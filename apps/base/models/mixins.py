@@ -1,7 +1,10 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db import models
 from django.conf import settings
 from django.contrib import admin
 from crum import get_current_user
+from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class TimeStampMixin(models.Model):
@@ -70,3 +73,14 @@ class SaveAdminMixin(admin.ModelAdmin):
 
     class Meta:
         abstract = True
+
+class OwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
+    
+    def test_func(self):
+        self.owner = self.get_object().created_by
+        return self.request.user == self.owner
+
+    # def handle_no_permission(self):
+    #     return JsonResponse(
+    #         {'message': 'You don\'t have access to edit this'}
+    #     )

@@ -13,7 +13,6 @@ class MenuListView(ListView, LoginRequiredMixin, UpdateView):
     model = Menu
     form_class = MenuCreateForm
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menus'] = self.get_queryset()

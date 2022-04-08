@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import CreateView, FormView
@@ -7,9 +6,10 @@ from django.views.generic.detail import SingleObjectMixin
 
 from apps.menus.form import MenuDetailFormset
 from apps.menus.models import Menu
+from apps.base.models.mixins import OwnerMixin
 
 
-class MenuDetailEditView(FormView, SingleObjectMixin, LoginRequiredMixin):
+class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
     model = Menu
     template_name = 'menu_detail_edit.html'
 
@@ -34,7 +34,6 @@ class MenuDetailEditView(FormView, SingleObjectMixin, LoginRequiredMixin):
             messages.SUCCESS,
             'Changes were saved.'
         )
-
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -44,3 +43,14 @@ class MenuDetailEditView(FormView, SingleObjectMixin, LoginRequiredMixin):
                 "menu_id": self.object.pk
             }
         )
+
+    def get_queryset(self):
+        return super().get_queryset()
+    
+    # def get_form_kwargs(self):
+    #     kwargs = super(MenuDetailEditView, self).get_form_kwargs()
+    #     kwargs.update({'user': self.request.user})
+    #     kwargs.update({'brand': self.kwargs.get('brand_id')})
+    #     return kwargs
+
+

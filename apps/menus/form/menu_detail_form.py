@@ -16,6 +16,9 @@ class MenuDetailForm(forms.ModelForm):
             'price'
         }
     
+    def __init__(self, *args, **kwargs):
+        super(MenuDetailForm, self).__init__(*args, **kwargs)
+        print(kwargs)
 
 
 MenuDetailFormset = inlineformset_factory(
