@@ -3,7 +3,8 @@
 {% block content %}
   {% include "partials/appnavbar.html" %}
   <form action="" method="post" enctype="multipart/form-data">
-
+    <h5 class="text-center">{{ menu.name }}{{ menu.currency }}</h5>
+    
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field.errors }}
       {{ hidden_field }}
@@ -13,32 +14,35 @@
 
     {{ form.management_form }}
     {{ form.non_form_errors }}
-
-    <h3>{{ form.name }}</h3>
-    {% for detail_form in form.forms %}
-      <hr>
-      <h5>
-        {% if detail_form.instance.id %}
-          Product: {{ detail_form.instance.product.name }}
-        {% else %}
-          {% if form.forms|length > 1 %}
-            Add another product
-          {% else %}
-            Add a product
-          {% endif %}
-        {% endif %}
-      </h5>
-      {% for hidden_field in detail_form.hidden_fields %}
-        {{ hidden_field.errors }}
-      {% endfor %}
-      <table>
-        {{ detail_form.as_table }}
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">Product</th>
+            <th class="text-center">Category</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detail_form in form.forms %}
+            {% for hidden_field in detail_form.hidden_fields %}
+              {{ hidden_field.errors }}
+            {% endfor %}
+            <tr>
+              <td>{{ detail_form.product|add_class:"form-select" }}</td>
+              <td>{{ detail_form.category|add_class:"form-select" }}</td>
+              <td class="col-3">{{ detail_form.price|add_class:"form-control" }}</td>
+              <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
       </table>
-    {% endfor %}
-    <hr>
+    </div>
     <p>
-      <button type="submit" value="Update menu" class="btn btn-primary">Update</button>
-      <a href="{{ menu.get_absolute_url  }}" class="btn btn-secondary">Cancel</a>
+      <a href="{{ menu.get_absolute_url  }}" class="btn btn-secondary">Go back</a>
+      <button type="submit" value="Submit" class="btn btn-success">Save</button>
+      <button id="add-product-form" class="btn btn-primary my-3">Add Another product</button>
     </p>
   </form>
 {% endblock %}

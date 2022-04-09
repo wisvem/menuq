@@ -19,11 +19,12 @@ class MenuDetailForm(BaseInlineFormSet):
 MenuDetailFormset = inlineformset_factory(
     Menu,
     MenuDetail,
-    fields={
+    fields=[
         'menu',
         'category',
         'product',
         'price'
-    },
-    formset=MenuDetailForm
+    ],
+    formset=MenuDetailForm,
+    extra=1
 )
