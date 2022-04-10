@@ -4,7 +4,7 @@
   {% include "partials/appnavbar.html" %}
   <div class="row">
     {% for menu in menus %}
-      <div class="col-sm-6">
+      <div class="col-sm-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ menu.name }}</h5>
@@ -12,10 +12,10 @@
             <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
           </div>
         </div>
+        <br>
       </div>
     {% endfor %}
   </div>
-  <br>
   {% if brand %}
     {% include "partials/modalcreate.html" with object="menu" %}
   {% endif %}

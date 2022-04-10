@@ -10,8 +10,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_extensions',
     'django_countries',
-    'widget_tweaks',
-    'debug_toolbar'
+    'widget_tweaks'
 ]
 
 
@@ -42,21 +41,17 @@ DATABASES = {
 STATICFILES_FINDERS = [
   # First add the two default Finders, since this will overwrite the default.
   'django.contrib.staticfiles.finders.FileSystemFinder',
-  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
-  # Now add our custom SimpleBulma one.
-  'django_simple_bulma.finders.SimpleBulmaFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MIDDLEWARE += [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'crum.CurrentRequestUserMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware"
+    'crum.CurrentRequestUserMiddleware'
 ]
 
 INTERNAL_IPS = [

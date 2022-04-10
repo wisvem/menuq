@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
+{% load static %}
 {% block content %}
   {% include "partials/appnavbar.html" %}
   <form action="" method="post" enctype="multipart/form-data">
@@ -24,25 +25,29 @@
             <th class="text-center">Delete?</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="menu-edit-form">
           {% for detail_form in form.forms %}
             {% for hidden_field in detail_form.hidden_fields %}
               {{ hidden_field.errors }}
             {% endfor %}
-            <tr>
+            <tr class="product-form">
               <td>{{ detail_form.product|add_class:"form-select" }}</td>
               <td>{{ detail_form.category|add_class:"form-select" }}</td>
               <td class="col-3">{{ detail_form.price|add_class:"form-control" }}</td>
               <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
+              {{ detail_form.menu.as_hidden }}
+              {{ detail_form.id }}
             </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-    <p>
+    <div>
       <a href="{{ menu.get_absolute_url  }}" class="btn btn-secondary">Go back</a>
-      <button type="submit" value="Submit" class="btn btn-success">Save</button>
-      <button id="add-product-form" class="btn btn-primary my-3">Add Another product</button>
-    </p>
+      <input type="submit" value="Save" class="btn btn-success"></input>
+      <button id="add-product-form" class="btn btn-primary">Add Another product</button>
+    </div>
   </form>
+  {% load static %}
+  <script src="{% static 'js/add-form.js' %}" type="text/javascript"></script>
 {% endblock %}

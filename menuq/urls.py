@@ -24,8 +24,7 @@ urlpatterns = [
     path('', include('apps.base.urls')),
     path('api/', include('apps.api.urls')),
     path('menu/', include('apps.menus.urls')),
-    path('companies/', include('apps.companies.urls')),
-    path('__debug__/', include('debug_toolbar.urls'))
+    path('companies/', include('apps.companies.urls'))
 ]
 
 if settings.DEBUG:
