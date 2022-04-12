@@ -2,13 +2,6 @@
 {% load widget_tweaks %}
 {% block content %}
   {% include "partials/appnavbar.html" %}
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
   <div>
     {{ menu }}
     {% for product in menu.menu_details.all %}

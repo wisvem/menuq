@@ -49,6 +49,11 @@ class MenuListView(ListView, LoginRequiredMixin, UpdateView):
             menu = Menu.objects.get(pk=request.POST.get('menu_id'))
             menu.is_active = True
             menu.save()
+            messages.add_message(
+                self.request, 
+                messages.SUCCESS,
+                f'{menu.name} has been activated'
+            )
             return HttpResponseRedirect(request.build_absolute_uri())
         else:
             self.object = self.get_object()
