@@ -7,9 +7,11 @@ from apps.companies.models.brand import Brand
 
 
 class Menu(BasicInfoMixin, TimeStampMixin):
+    CURRENCY_CHOICES = [(None, 'Select currency')] 
+    CURRENCY_CHOICES += [(key, key) for key in CURRENCIES]
     currency = models.CharField(
         max_length=3,
-        choices=[(key, key) for key in CURRENCIES]
+        choices=CURRENCY_CHOICES
     )
     brand = models.ForeignKey(
         Brand,

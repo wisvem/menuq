@@ -28,7 +28,9 @@ def generate_qr(sender, instance, **kwargs):
         # save qr code
         img.save(blob, 'PNG')
         post_save.disconnect(generate_qr, sender=Brand)
-        instance.qr_code.save(f'{instance.id}.png', File(blob))
+        instance.qr_code.save(
+            f'qr_{instance.name}{instance.id}.png', File(blob)
+        )
         blob.close()
         qr.clear()
         post_save.connect(generate_qr, sender=Brand)

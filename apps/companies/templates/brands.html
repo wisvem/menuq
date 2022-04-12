@@ -7,9 +7,18 @@
   {% else %}
     <div class="row">
       {% for brand in brands %}
-        <div class="col-sm-6">
-          <div class="card">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+        <div class="col-sm-4">
+          <div class="card text-center">
+            <div class="bg-image hover-overlay ripple">
+              <img src="{{ brand.qr_code.url }}" class="img-thumbnail img-fluid" alt="qr-code"/>
+              <a href="" download="{{ brand.qr_code.url }}">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                  <div class="d-flex justify-content-center align-items-center h-100">
+                  <span class="btn btn-info">Download QR Code</span>
+                  </div>
+                </div>
+              </a>
+            </div>
             <div class="card-body">
               <h5 class="card-title">{{ brand.name }}</h5>
               <p class="card-text">{{ brand.description }}</p>

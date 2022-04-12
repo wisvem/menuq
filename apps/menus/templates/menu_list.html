@@ -5,11 +5,23 @@
   <div class="row">
     {% for menu in menus %}
       <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-center {% if menu.is_active %}border border-success border-2{% endif %}" style="max-width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">{{ menu.name }}</h5>
+            <h5 class="card-title">
+              {{ menu.name }}
+              {% if menu.is_active %}
+                <span class="badge rounded-pill badge-success">Active</span>
+              {% endif %}
+            </h5>
             <p class="card-text">{{ menu.description }}</p>
-            <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
+            <form method="POST">
+              {% csrf_token %}
+              <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
+              {% if not menu.is_active %}
+                <input type="hidden" value="{{ menu.id }}" name="menu_id"/>
+                <input type="submit" value="Activate" class="btn" name="activate"/>
+              {% endif %}
+            </form>
           </div>
         </div>
         <br>
@@ -19,4 +31,5 @@
   {% if brand %}
     {% include "partials/modalcreate.html" with object="menu" %}
   {% endif %}
+  <a href={% url "brands" %} class="btn btn-secondary">Go to brands</a>
 {% endblock %}

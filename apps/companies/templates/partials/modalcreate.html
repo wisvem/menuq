@@ -16,28 +16,40 @@
         </div>
         <div class="modal-body"> 
           {% csrf_token %}
-          <label>{{ form.name.label }}</label>
-          <div>{{ form.name }}</div>
+          <div class="form-outline">
+            {{ form.name|attr:"id:form-name"|add_class:"form-control" }}
+            <label class="form-label" for="form-name">{{ form.name.label }}</label>
+          </div>
+          <br>
           {% if object == "company" %}
-            <label>{{ form.company_id.label }}</label>
-            <div>{{ form.company_id }}</div>
-            <label>{{ form.country.label }}</label>
-            <div>{{ form.country }}</div>
+            <div class="form-outline">
+              {{ form.company_id|attr:"id:form-id"|add_class:"form-control" }}
+              <label class="form-label" for="form-id">{{ form.company_id.label }}</label>
+            </div>
+            <div class="form-outline">
+              {{ form.country }}
+              <label>{{ form.country.label }}</label>
+            </div>
           {% elif object == "brand" %}
             {{ form.company.as_hidden }}
           {% elif object == "menu" %}
-            <label>{{ form.currency.label }}</label>
-            <div>{{ form.currency }}</div>
-            <label>{{ form.is_active.label }}</label>
-            <div>{{ form.is_Active }}</div>
+            <div>
+              {{ form.currency|attr:"id:form-currency"|add_class:"form-control form-label" }}
+            </div>
+            <div class="form-check form-switch">
+              {{ form.is_active|add_class:"form-check-input"|attr:"id:activate-switch"}}
+              <label class="form-label" for="activate-switch">Activate menu</label>
+            </div>
             {{ form.brand.as_hidden }}
           {% endif %}
-          <label>{{ form.description.label }}</label>
-          <div>{{ form.description }}</div>
+          <div class="form-outline">
+            {{ form.description|attr:"id:form-description"|add_class:"form-control" }}
+            <label class="form-label" for="form-description">{{ form.description.label }}</label>  
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancel</button>
         </div>
       </div>
     </form>

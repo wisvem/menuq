@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import resolve
 from django.views.generic import ListView, UpdateView
 
 from apps.menus.form import MenuCreateForm
@@ -27,7 +28,10 @@ class MenuListView(ListView, LoginRequiredMixin, UpdateView):
         self.brand = get_object_or_404(Brand, pk=self.kwargs['brand_id'])
         if self.user.id is not self.brand.created_by.id:
             raise Http404()
-        return Menu.objects.filter(brand=self.brand, created_by=self.user)
+        return Menu.objects.filter(
+            brand=self.brand,
+            created_by=self.user
+        ).order_by('-is_active', 'name')
 
 
     def get_object(self, queryset=None):
@@ -41,8 +45,14 @@ class MenuListView(ListView, LoginRequiredMixin, UpdateView):
         return super(MenuListView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super(MenuListView, self).post(request, *args, **kwargs)
+        if 'activate' in request.POST:
+            menu = Menu.objects.get(pk=request.POST.get('menu_id'))
+            menu.is_active = True
+            menu.save()
+            return HttpResponseRedirect(request.build_absolute_uri())
+        else:
+            self.object = self.get_object()
+            return super(MenuListView, self).post(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(MenuListView, self).get_form_kwargs()
