@@ -4,46 +4,43 @@
 {% block content %}
   {% include "partials/appnavbar.html" %}
   <form action="" method="POST" enctype="multipart/form-data">
-    <h5 class="text-center">{{ menu.name }}{{ menu.currency }}</h5>
-    
+    {% csrf_token %}
+    <h5 class="text-center">{{ brand.name }} products</h5>
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field.errors }}
       {{ hidden_field }}
     {% endfor %}
-
-    {% csrf_token %}
-
     {{ form.management_form }}
     {{ form.non_form_errors }}
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="text-center">Product</th>
-            <th class="text-center">Category</th>
-            <th class="text-center">Price</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Photo</th>
             <th class="text-center">Delete?</th>
           </tr>
         </thead>
-        <tbody id="menu-edit-form">
+        <tbody>
           {% for detail_form in form.forms %}
             {% for hidden_field in detail_form.hidden_fields %}
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
-              <td>{{ detail_form.product|add_class:"form-select" }}</td>
-              <td>{{ detail_form.category|add_class:"form-select" }}</td>
-              <td class="col-3">{{ detail_form.price|add_class:"form-control" }}</td>
+              <td class="col-3">{{ detail_form.name|add_class:"form-control" }}</td>
+              <td class="col-4">{{ detail_form.description|add_class:"form-control" }}</td>
+              <td class="col-3">{{ detail_form.photo|add_class:"form-control" }}</td>
               <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
-              {{ detail_form.menu.as_hidden }}
+              {{ detail_form.brand.as_hidden }}
               {{ detail_form.id }}
             </tr>
           {% endfor %}
         </tbody>
-      </table>
+      <table class="table table-hover">
     </div>
     <div>
-      <a href="{{ menu.get_absolute_url  }}" class="btn btn-danger">Go back</a>
+      <a href={% url "brands" %} class="btn btn-danger">Go back</a>
       <input type="submit" value="Save" class="btn btn-success"></input>
       <button id="add-product-form" class="btn btn-primary">Add Another product</button>
     </div>

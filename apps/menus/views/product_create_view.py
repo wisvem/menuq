@@ -1,28 +1,28 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import CreateView, FormView
+from django.views.generic import FormView
 from django.views.generic.detail import SingleObjectMixin
 
-from apps.menus.form import MenuDetailFormset
-from apps.menus.models import Menu
 from apps.base.models.mixins import OwnerMixin
+from apps.companies.models import Brand
+from apps.menus.form import ProductFormSet
 
 
-class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
-    model = Menu
-    template_name = 'menu_detail_edit.html'
+class ProductUpdateView(OwnerMixin, FormView, SingleObjectMixin):
+    model = Brand
+    template_name = 'product_edit.html'
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=Menu.objects.all())
+        self.object = self.get_object(queryset=Brand.objects.all())
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=Menu.objects.all())
+        self.object = self.get_object(queryset=Brand.objects.all())
         return super().post(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
-        return MenuDetailFormset(
+        return ProductFormSet(
             **self.get_form_kwargs(),
             instance=self.object
         )
@@ -32,14 +32,14 @@ class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            'The menu has been updated correctly'
+            f'{self.object.name} products has been updated successfully'
         )
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse(
-            "menu_detail", kwargs={
-                "brand_id": self.object.brand_id,
-                "menu_id": self.object.pk
+            "product_update", kwargs={
+                "pk": self.object.pk
             }
         )
+

@@ -9,6 +9,7 @@ class BrandForm(forms.ModelForm):
         model = Brand
         fields = {
             'name',
+            'photo',
             'description',
             'company'
         }

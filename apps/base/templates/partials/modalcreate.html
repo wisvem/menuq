@@ -3,7 +3,7 @@
 <!-- Button trigger modal -->
 <br>
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#createModal">
-  Create new {{ object }}
+  <i class="fa-solid fa-circle-plus"></i> {{ object }}
 </button>
 <!-- Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
@@ -32,6 +32,8 @@
             </div>
           {% elif object == "brand" %}
             {{ form.company.as_hidden }}
+            <div>Logo {{ form.photo|add_class:"form-control" }}</div>
+            <br>
           {% elif object == "menu" %}
             <div>
               {{ form.currency|attr:"id:form-currency"|add_class:"form-control form-label" }}
@@ -49,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Save</button>
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">Cancel</button>
         </div>
       </div>
     </form>

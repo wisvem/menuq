@@ -10,7 +10,9 @@
         <div class="col-sm-4">
           <div class="card text-center">
             <div class="bg-image hover-overlay ripple">
-              <img src="{{ brand.qr_code.url }}" class="img-thumbnail img-fluid" alt="qr-code"/>
+              {% if brand.photo %}
+                <img src="{{ brand.photo.url }}" class="card-img" alt="brand-logo"/>
+              {% endif %}
               <a href="" download="{{ brand.qr_code.url }}">
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
                   <div class="d-flex justify-content-center align-items-center h-100">
@@ -22,7 +24,8 @@
             <div class="card-body">
               <h5 class="card-title">{{ brand.name }}</h5>
               <p class="card-text">{{ brand.description }}</p>
-              <a href={% url "list_menus" brand.id %} class="btn btn-primary">See menus</a>
+              <a href={% url "list_menus" brand.id %} class="btn btn-primary"><i class="fa-solid fa-file-lines"></i> Menus</a>
+              <a href={% url "product_update" brand.id %} class="btn btn-primary"><i class="fa-solid fa-basket-shopping"></i> Products</a>
             </div>
           </div>
         </div>
