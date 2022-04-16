@@ -5,7 +5,7 @@
   {% include "partials/appnavbar.html" %}
   <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <h5 class="text-center">{{ brand.name }} products</h5>
+    <h5 class="display-6">{{ brand.name }} products</h5>
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field.errors }}
       {{ hidden_field }}
@@ -13,7 +13,7 @@
     {{ form.management_form }}
     {{ form.non_form_errors }}
     <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table table-hover table-responsive">
         <thead>
           <tr>
             <th class="text-center">Name</th>
@@ -22,27 +22,34 @@
             <th class="text-center">Delete?</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="detail-form">
           {% for detail_form in form.forms %}
             {% for hidden_field in detail_form.hidden_fields %}
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
               <td class="col-3">{{ detail_form.name|add_class:"form-control" }}</td>
-              <td class="col-4">{{ detail_form.description|add_class:"form-control" }}</td>
-              <td class="col-3">{{ detail_form.photo|add_class:"form-control" }}</td>
-              <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
+              <td class="col-5">{{ detail_form.description|add_class:"form-control" }}</td>
+              <td class="col-3 text-center">
+                {% include "partials/modalupload.html" with object=forloop.counter0|stringformat:"s" %}  
+              </td>
+              <td>
+                <div class="form-check form-switch d-flex justify-content-center">
+                  {{ detail_form.DELETE|add_class:"form-check-input"|attr:"id:delete-switch"}}
+                </div>
+              </td>
               {{ detail_form.brand.as_hidden }}
               {{ detail_form.id }}
             </tr>
           {% endfor %}
         </tbody>
-      <table class="table table-hover">
+      </table>
+      <button id="add-product-form" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Product</button>
     </div>
+    <br>
     <div>
       <a href={% url "brands" %} class="btn btn-danger">Go back</a>
       <input type="submit" value="Save" class="btn btn-success"></input>
-      <button id="add-product-form" class="btn btn-primary">Add Another product</button>
     </div>
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>

@@ -3,7 +3,7 @@ import os
 def custom_path(instance, filename):
     """
     Function to create a string that would be used as a path
-    to upload an image or file
+    to upload an image or file and mantain only one file
     """
     cls_name = instance.__class__.__name__
     filename = f'{instance.id}-{instance.name}{filename[filename.rfind("."):]}'

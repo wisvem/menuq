@@ -32,7 +32,7 @@ class ProductUpdateView(OwnerMixin, FormView, SingleObjectMixin):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            f'{self.object.name} products has been updated successfully'
+            f'{self.object.name} products has been updated'
         )
         return HttpResponseRedirect(self.get_success_url())
 

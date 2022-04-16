@@ -2,6 +2,7 @@ from apps.base.models.mixins import *
 from apps.companies.models.brand import Brand
 from apps.base.helpers import custom_path
 from django.core.validators import validate_image_file_extension
+import os
 
 
 class Product(BasicInfoMixin, TimeStampMixin):

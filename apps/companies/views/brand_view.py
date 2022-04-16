@@ -13,7 +13,9 @@ class BrandView(ListView, LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        brands = Brand.objects.filter(created_by=self.request.user)
+        brands = Brand.objects.filter(
+            created_by=self.request.user
+            ).order_by('name')
         context['brands'] = brands
         return context
 

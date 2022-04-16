@@ -1,0 +1,28 @@
+{% load widget_tweaks %}
+{% block content %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#uploadModal{{ object }}">
+  <i class="fa-solid fa-circle-plus"></i> image
+</button>
+<!-- Modal -->
+<div class="modal fade" id="uploadModal{{object}}" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Add images</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% with "photo"|add:object as photo_id %}
+            <label class="btn" for={{ photo_id }}><i class="fa-solid fa-upload"></i> Select Photo</label>
+            <br>
+            {% render_field detail_form.photo id=photo_id %}
+          {% endwith %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">Done</button>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
