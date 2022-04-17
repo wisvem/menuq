@@ -4,7 +4,8 @@ from apps.menus.views import (
     MenuListView,
     MenuDetailView,
     MenuDetailEditView,
-    ProductUpdateView
+    ProductUpdateView,
+    CategoryUpdateView
 )
 
 
@@ -39,5 +40,10 @@ urlpatterns = [
         'm/products/<pk>/update/',
         ProductUpdateView.as_view(),
         name="product_update"
-    )
+    ),
+    path(
+        'm/categories/<pk>/update/',
+        CategoryUpdateView.as_view(),
+        name="category_update"
+    ),
 ]

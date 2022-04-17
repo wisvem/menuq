@@ -24,8 +24,11 @@
             <div class="card-body">
               <h5 class="card-title">{{ brand.name }}</h5>
               <p class="card-text">{{ brand.description }}</p>
-              <a href={% url "list_menus" brand.id %} class="btn btn-primary"><i class="fas fa-file-alt"></i> Menus</a>
-              <a href={% url "product_update" brand.id %} class="btn btn-primary"><i class="fas fa-shopping-basket"></i> Products</a>
+              <div class="btn-group btn-group-sm">
+                <a href={% url "product_update" brand.id %} class="btn btn-primary"><i class="fas fa-shopping-basket"></i> Products</a>
+                <a href={% url "category_update" brand.id %} class="btn btn-primary"><i class="fas fa-archive"></i> Categories</a>
+                <a href={% url "list_menus" brand.id %} class="btn btn-primary"><i class="fas fa-file-alt"></i> Menus</a>
+              </div>
             </div>
           </div>
         </div>

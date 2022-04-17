@@ -7,8 +7,10 @@ const mainForm = document.querySelector("#detail-form");
 const totalForms = document.querySelector("[id$='-TOTAL_FORMS']");
 
 let element = "";
-if (totalForms.name.includes("product")) {
+if (totalForms.name.includes("products")) {
   element = "products";
+} else if (totalForms.name.includes("categories")) {
+  element = "categories"
 } else {
   element = "menu_details";
 }
@@ -28,7 +30,7 @@ addProductFormBtn.addEventListener("click", function (event) {
 
   const newProductForm = emptyProductForm.cloneNode(true);
   // regular expression to find all the matches and replace it with the updated form ID.
-  const formRegex = RegExp(`(menu_details|products)-(\\d+){1}-`, 'g');
+  const formRegex = RegExp(`(menu_details|products|categories)-(\\d+){1}-`, 'g');
   newProductForm.innerHTML = newProductForm.innerHTML.replace(formRegex, `${element}-${formCount + 1}-`);
   // Insert new form before the last product form
   insertAfter(productForm[formCount], newProductForm);

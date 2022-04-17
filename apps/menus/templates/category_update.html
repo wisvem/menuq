@@ -16,10 +16,10 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="text-center">Name</th>
-            <th class="text-center">Description</th>
-            <th class="text-center">Photo</th>
-            <th class="text-center">Delete?</th>
+            <th class="">Parent Category</th>
+            <th class="">Name</th>
+            <th class="">Description</th>
+            <th class="">Delete?</th>
           </tr>
         </thead>
         <tbody id="detail-form">
@@ -28,11 +28,9 @@
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
-              <td>{{ detail_form.name|add_class:"form-control" }}</td>
+              <td>{{ detail_form.parent }}</td>
+              <td>{{ detail_form.name }}</td>
               <td>{{ detail_form.description|add_class:"form-control" }}</td>
-              <td >
-                {% include "partials/modalupload.html" with object=forloop.counter0|stringformat:"s" %}  
-              </td>
               <td>
                 <div class="form-check form-switch d-flex justify-content-center">
                   {{ detail_form.DELETE|add_class:"form-check-input"|attr:"id:delete-switch"}}
@@ -44,7 +42,7 @@
           {% endfor %}
         </tbody>
       </table>
-      <button id="add-product-form" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Product</button>
+      <button id="add-product-form" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Category</button>
     </div>
     <br>
     <div>
