@@ -1,6 +1,6 @@
 textarea {
   height: 2.5em;
-  width: 50%;
+  width: auto;
   padding: 3px;
   transition: all 0.5s ease;
 }
@@ -36,4 +36,8 @@ textarea:focus {
 .fab:hover {
 	transform: scale(1.05);
 	cursor: pointer;
+}
+
+.form-control {
+	width: unset;
 }
