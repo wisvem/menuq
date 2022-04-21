@@ -15,10 +15,14 @@ class BrandForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
-        self.user = user
-        # TODO The next lines of code has to be changed
-        # when multiple compnay is allowed
-        user_company = Company.objects.filter(created_by=user).first()
+        try:
+            user = kwargs.pop('user')
+            self.user = user
+            # TODO The next lines of code has to be changed
+            # when multiple compnay is allowed
+            company = Company.objects.filter(created_by=user).first()
+        except:
+            company = kwargs.get('instance').company
+
         super(BrandForm, self).__init__(*args, **kwargs)
-        self.initial['company'] = user_company
+        self.initial['company'] = company

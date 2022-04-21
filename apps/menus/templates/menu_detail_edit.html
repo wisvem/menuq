@@ -4,19 +4,16 @@
 {% block content %}
   {% include "partials/appnavbar.html" %}
   <form action="" method="POST" enctype="multipart/form-data">
-    <h5 class="display-6">{{ menu.name }}</h5>
-    
+    {% csrf_token %}
+    <h5 class="display-6">{{ menu.name }} {{ menu.brand }}</h5>
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field.errors }}
       {{ hidden_field }}
     {% endfor %}
-
-    {% csrf_token %}
-
     {{ form.management_form }}
     {{ form.non_form_errors }}
     <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table table-borderless table-sm">
         <thead>
           <tr>
             <th class="text-center">Product</th>
@@ -31,8 +28,8 @@
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
-              <td>{{ detail_form.product|add_class:"form-select" }}</td>
-              <td>{{ detail_form.category|add_class:"form-select" }}</td>
+              <td>{{ detail_form.product|add_class:"select form-control" }}</td>
+              <td>{{ detail_form.category|add_class:"select form-control" }}</td>
               <td class="col-3">{{ detail_form.price|add_class:"form-control" }}</td>
               <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
               {{ detail_form.menu.as_hidden }}
@@ -44,9 +41,10 @@
     </div>
     <div>
       <a href="{{ menu.get_absolute_url  }}" class="btn btn-danger">Go back</a>
-      <input type="submit" value="Save" class="btn btn-success"></input>
+      <button type="submit" value="Save" class="btn btn-success">Save</button>
       <button id="add-product-form" class="btn btn-primary">Add Another product</button>
     </div>
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>
+  <script src="{% static 'js/select-search.js' %}"></script>
 {% endblock %}

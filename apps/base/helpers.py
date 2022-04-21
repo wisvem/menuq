@@ -12,9 +12,9 @@ def custom_path(instance, filename):
         if obj.photo:
             obj.photo.delete()
     except:
-        print('tranquilo')
+        print('tu tranquilo')
     if cls_name == 'Product':
         path = f'brands/{instance.brand_id}/products'
     else:
-        path = f'brands/{instance.brand_id}-{instance.name}'
+        path = f'brands/{instance.id}-{instance.name}'
     return f'{path}/{filename}'

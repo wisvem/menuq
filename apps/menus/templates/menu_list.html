@@ -21,7 +21,7 @@
               <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
               {% if not menu.is_active %}
                 <input type="hidden" value="{{ menu.id }}" name="menu_id"/>
-                <input type="submit" value="Activate" class="btn" name="activate"/>
+                <button type="submit" value="Activate" class="btn" name="activate">Activate</button>
               {% endif %}
             </form>
           </div>

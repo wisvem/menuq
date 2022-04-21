@@ -13,7 +13,7 @@
     {{ form.management_form }}
     {{ form.non_form_errors }}
     <div>
-      <table class="table table-hover">
+      <table class="table table-hover table-sm">
         <thead>
           <tr>
             <th class="text-center">Name</th>
@@ -49,7 +49,7 @@
     <br>
     <div>
       <a href={% url "brands" %} class="btn btn-danger">Go back</a>
-      <input type="submit" value="Save" class="btn btn-success"></input>
+      <button type="submit" value="Save" class="btn btn-success">Save</button>
     </div>
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>

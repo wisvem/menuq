@@ -2,14 +2,17 @@
 {% load widget_tweaks %}
 {% block content %}
   {% include "partials/appnavbar.html" %}
-  <div class="row">
+  <div class="card-group">
     {% for company in companies %}
-      <div class="col-sm-6">
-        <div class="card">
+      <div class="col-sm-4">
+        <div class="card shadow-1-strong">
           <div class="card-body">
             <h5 class="card-title">{{ company.name }}</h5>
             <p class="card-text">{{ company.company_id }}</p>
-            <a href={% url "brands" %} class="btn btn-primary">See brands</a>
+            <div class="btn-group">
+              <a href={% url "brands" %} class="btn btn-light">See brands</a>
+              <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></i> Edit</a>
+            <div>
           </div>
         </div>
       </div>

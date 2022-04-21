@@ -10,6 +10,7 @@ class MenuActiveView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = self.get_queryset()
+        context['brand'] = self.brand
         return context
 
     def get_queryset(self):

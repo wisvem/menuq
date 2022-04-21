@@ -1,0 +1,21 @@
+{% load widget_tweaks %}
+{% block content %}
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel"><i class="fas fa-exclamation-triangle text-warning"></i>Warning</h5>         
+        </div>
+        <div class="modal-body text-center">
+          <p>Are you sure you want to delete <span class="text-danger">{{ object }}</span>?</p>
+          <p>All related data will be deleted and this operation cannot be undone</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-mdb-dismiss="modal">Dismiss</button>
+          <button type="submit" class="btn btn-danger" name="confirm_delete">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

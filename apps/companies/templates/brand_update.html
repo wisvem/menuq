@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+  {% include "partials/appnavbar.html" %}
+  <section class="w-100 p-4 d-flex justify-content-center pb-4">
+  <form method="POST"> 
+    {% csrf_token %}
+    <div class="form-outline mb-4">
+      {{ form.name|attr:"id:form-name"|add_class:"form-control" }}
+      <label class="form-label" for="form-name">{{ form.name.label }}</label>
+    </div>
+    <div class="form-outline mb-4">
+      {{ form.description|attr:"id:form-description"|add_class:"form-control" }}
+      <label class="form-label" for="form-description">{{ form.description.label }}</label>  
+    </div>
+    <div class="mb-4">
+      {{ form.photo|add_class:"form-control" }}
+      {{ form.company.as_hidden }}
+    </div>
+    <div class="position-relative">
+      <button type="submit" class="btn btn-primary" value="Save">Save</button>
+      <button href={% url "brands" %} class="btn btn-danger">Go back</button>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-warning end-0" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+        <i class="fas fa-trash"></i>
+      </button>
+
+    </div>
+    {% include "partials/modaldelete.html" with object=form.instance.name %}
+  </form>
+</section>
+{% endblock %}

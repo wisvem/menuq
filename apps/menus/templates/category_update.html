@@ -5,7 +5,7 @@
   {% include "partials/appnavbar.html" %}
   <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <h5 class="display-6">{{ brand.name }} products</h5>
+    <h5 class="display-6">{{ brand.name }} Categories</h5>
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field.errors }}
       {{ hidden_field }}
@@ -13,7 +13,7 @@
     {{ form.management_form }}
     {{ form.non_form_errors }}
     <div>
-      <table class="table table-hover">
+      <table class="table table-sm">
         <thead>
           <tr>
             <th class="">Parent Category</th>
@@ -28,8 +28,8 @@
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
-              <td>{{ detail_form.parent }}</td>
-              <td>{{ detail_form.name }}</td>
+              <td>{{ detail_form.parent|add_class:"form-control" }}</td>
+              <td>{{ detail_form.name|add_class:"form-control" }}</td>
               <td>{{ detail_form.description|add_class:"form-control" }}</td>
               <td>
                 <div class="form-check form-switch d-flex justify-content-center">
@@ -47,7 +47,7 @@
     <br>
     <div>
       <a href={% url "brands" %} class="btn btn-danger">Go back</a>
-      <input type="submit" value="Save" class="btn btn-success"></input>
+      <button type="submit" value="Save" class="btn btn-success">Save</button>
     </div>
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>

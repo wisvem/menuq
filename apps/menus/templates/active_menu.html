@@ -2,11 +2,13 @@
 {% load widget_tweaks %}
 {% block content %}
 <div>
-  {% comment %} <h1>{{ menu.name }}<h1>
-  <h3>{{ menu.description }}</h3> {% endcomment %}
-  {{ menu }}
-  {% for product in menu.menu_details.all %}
-    <div>{{ product }}</div>
-  {% endfor %}
+  {% if menu %}
+    {{ menu }}
+    {% for product in menu.menu_details.all %}
+      <div>{{ product }}</div>
+    {% endfor %}
+  {% else %}
+    Sorry, {{ brand }}We don't have a active catalog 
+  {% endif %}
 </div>
 {% endblock %}
