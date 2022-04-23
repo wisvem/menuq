@@ -32,7 +32,7 @@ class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            'The menu has been updated correctly'
+            'The menu has been updated'
         )
         return HttpResponseRedirect(self.get_success_url())
 
@@ -43,3 +43,12 @@ class MenuDetailEditView(OwnerMixin, FormView, SingleObjectMixin):
                 "menu_id": self.object.pk
             }
         )
+
+    def form_invalid(self, form):
+        messages.add_message(
+            self.request,
+            messages.ERROR,
+            'There was an error updating this menu'
+        )
+        print(form.errors)
+        return super().form_invalid(form)

@@ -28,6 +28,8 @@ class MenuDetail(TimeStampMixin):
         default=0,
         null=False
     )
+    order = models.IntegerField(null=True, blank=True)
+
     def __str__(self):
         return(f'{self.category} {self.product.name} {self.price}')
 
@@ -38,3 +40,4 @@ class MenuDetail(TimeStampMixin):
                 name='unique_product'
             )
         ]
+        ordering = ['order']

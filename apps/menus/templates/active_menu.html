@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-<div>
-  {% if menu %}
-    {{ menu }}
-    {% for product in menu.menu_details.all %}
-      <div>{{ product }}</div>
-    {% endfor %}
-  {% else %}
-    Sorry, {{ brand }}We don't have a active catalog 
-  {% endif %}
-</div>
+  <div>
+    {% if brand %}<h5>{{ brand }}</h5>{% endif %}
+    {% if not menu %}
+      Sorry, we don't have a active catalog
+    {% else %}
+      {% for category in categories %}
+        <div class="container-fluid">
+          <div class="bg-light">
+            <a data-mdb-toggle="collapse" href="#collapseExample{{forloop.counter0}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+              {{ category.category }}
+            </a>
+            <div class="collapse mt-3" id="collapseExample{{forloop.counter0}}">
+              contenido
+            </div>
+          </div>
+        </div>
+      {% endfor %}     
+    {% endif %}
+  </div>
 {% endblock %}

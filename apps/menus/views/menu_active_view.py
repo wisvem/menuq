@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 
-from apps.menus.models.menu import *
+from apps.companies.models import Brand
+from apps.menus.models import Menu
 
 
 class MenuActiveView(ListView):
@@ -9,8 +10,10 @@ class MenuActiveView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = self.get_queryset()
         context['brand'] = self.brand
+        context['menu'] = self.get_queryset()
+        context['categories'] = context['menu'].menu_details.all().distinct(
+            'category')
         return context
 
     def get_queryset(self):

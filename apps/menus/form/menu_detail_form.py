@@ -12,7 +12,7 @@ class MenuDetailForm(BaseInlineFormSet):
         self.brand = self.instance.brand
         for form in self.forms:
             for field, value in form.fields.items():
-                if hasattr(value, 'queryset') and field is not 'id':
+                if hasattr(value, 'queryset') and field != 'id':
                     value.queryset = value.queryset.filter(brand=self.brand)
 
 
@@ -23,7 +23,8 @@ MenuDetailFormset = inlineformset_factory(
         'menu',
         'category',
         'product',
-        'price'
+        'price',
+        'order'
     ],
     formset=MenuDetailForm,
     extra=1

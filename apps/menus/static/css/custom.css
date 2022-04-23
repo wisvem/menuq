@@ -42,5 +42,10 @@ textarea:focus {
 	cursor: pointer;
 }
 
-.form-control {
+.fa-grip-vertical:active {
+	cursor: grabbing;
+}
+
+.fa-grip-vertical {
+	cursor: grab;
 }

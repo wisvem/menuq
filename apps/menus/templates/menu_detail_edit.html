@@ -28,10 +28,17 @@
               {{ hidden_field.errors }}
             {% endfor %}
             <tr class="product-form">
-              <td>{{ detail_form.product|add_class:"select form-control" }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-grip-vertical">&nbsp</i>
+                  {{ detail_form.product|add_class:"select form-control" }}
+                </div>
+              </td>
               <td>{{ detail_form.category|add_class:"select form-control" }}</td>
               <td class="col-3">{{ detail_form.price|add_class:"form-control" }}</td>
               <td class="text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
+              
+              {% render_field detail_form.order type="hidden" value=0 %}
               {{ detail_form.menu.as_hidden }}
               {{ detail_form.id }}
             </tr>
@@ -47,4 +54,5 @@
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>
   <script src="{% static 'js/select-search.js' %}"></script>
+  <script src="{% static 'js/sortable-table.js' %}"></script>
 {% endblock %}
