@@ -24,7 +24,7 @@ class MenuDetail(TimeStampMixin):
     )
     price = models.DecimalField(
         max_digits=9,
-        decimal_places=2,
+        decimal_places=0,
         default=0,
         null=False
     )
