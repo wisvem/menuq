@@ -54,3 +54,8 @@ textarea:focus {
 	z-index: 2;
 	position: relative;
 }
+
+select.form-control,
+input.form-control {
+	min-width:max-content;
+}
