@@ -1,3 +1,4 @@
+from django.core.serializers import serialize
 from django.views.generic import ListView
 
 from apps.companies.models import Brand
@@ -12,8 +13,16 @@ class MenuActiveView(ListView):
         context = super().get_context_data(**kwargs)
         context['brand'] = self.brand
         context['menu'] = self.get_queryset()
-        context['categories'] = context['menu'].menu_details.all().distinct(
-            'category')
+        items = [
+            {
+                'product': x.product,
+                'price': x.price,
+                'category': x.category
+            } for x in context['menu'].menu_details.all()
+        ]
+        context['items'] = items
+
+
         return context
 
     def get_queryset(self):

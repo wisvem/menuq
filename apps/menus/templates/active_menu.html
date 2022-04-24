@@ -2,22 +2,47 @@
 {% load widget_tweaks %}
 {% block content %}
   <div>
-    {% if brand %}<h5>{{ brand }}</h5>{% endif %}
+    {% if brand %}
+      <h5 class="text-center">{{ brand }}</h5>
+    {% endif %}
     {% if not menu %}
       Sorry, we don't have a active catalog
     {% else %}
-      {% for category in categories %}
-        <div class="container-fluid">
-          <div class="bg-light">
-            <a data-mdb-toggle="collapse" href="#collapseExample{{forloop.counter0}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-              {{ category.category }}
-            </a>
-            <div class="collapse mt-3" id="collapseExample{{forloop.counter0}}">
-              contenido
+      {% regroup items by category as catgory_list %}   
+      {% for category in catgory_list %}
+        {% with forloop.counter0 as index %}
+          <div class="container-fluid">
+            <div>
+              <a class="btn btn-block btn-lg border shadow-0 btn-dark mb-3" data-mdb-toggle="collapse" href="#collapse{{category.grouper}}" role="button" aria-expanded="false" aria-controls="collapse{{category.grouper}}">
+                {{ category.grouper }}
+              </a>
+              <div class="collapse show row row-cols-1 row-cols-md-4 g-4" id="collapse{{category.grouper}}">
+                {% for item in category.list %}
+                  <div class="col">
+                    <div class="card border shadow-0 mb-2 mx-auto" style="max-width: 18rem;">
+                      {% if item.product.photo %}
+                        <img src={{ item.product.photo.url}} class="card-img-top" alt={{ item.product }}/>
+                      {% else %}
+                      <div class="card-header"></div>
+                      {% endif %}
+                      <div class="card-body text-primary">
+                        <i class="fas bg-light fa-heart fa-2x cart btn position-absolute top-0 end-0" bg-light></i>
+                        <a href="#collapse{{item.product}}" data-mdb-toggle="collapse" class="stretched-link">
+                          <h5 class="text-dark d-flex justify-content-between">
+                            <span>{{ item.product }}</span>
+                            <span>${{ item.price|floatformat:"g" }}</span>
+                          </h5>
+                        </a>
+                        <p class="card-text text-dark collapse" id="collapse{{item.product}}">{{ item.product.description }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
-      {% endfor %}     
+        {% endwith %}
+      {% endfor %}
     {% endif %}
   </div>
 {% endblock %}

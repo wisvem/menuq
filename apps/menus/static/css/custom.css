@@ -49,3 +49,8 @@ textarea:focus {
 .fa-grip-vertical {
 	cursor: grab;
 }
+
+.cart {
+	z-index: 2;
+	position: relative;
+}
