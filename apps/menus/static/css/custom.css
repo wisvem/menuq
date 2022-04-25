@@ -59,3 +59,7 @@ select.form-control,
 input.form-control {
 	min-width:max-content;
 }
+
+.ui-sortable-helper {
+	display: flex;
+}
