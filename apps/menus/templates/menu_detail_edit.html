@@ -35,7 +35,8 @@
                 </div>
               </td>
               <td>{{ detail_form.category|add_class:"select form-control" }}</td>
-              <td class="col-2">{{ detail_form.price|add_class:"form-control text-end" }}</td>
+              <td>{% render_field detail_form.price class="form-control text-end" min="0" max="99999999" %}</td>
+
               <td class="align-middle text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
               {% render_field detail_form.order type="hidden" value=0 %}
               {{ detail_form.menu.as_hidden }}
