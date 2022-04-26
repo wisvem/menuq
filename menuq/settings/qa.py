@@ -36,8 +36,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'menuqdbtest',
-        'USER': 'wisvem',
+        'NAME': 'wisvem$menuqdbtest',
         'PASSWORD': 'alohomora1',
         'HOST': 'wisvem.mysql.pythonanywhere-services.com'
     }
