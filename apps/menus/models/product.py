@@ -21,3 +21,11 @@ class Product(BasicInfoMixin, TimeStampMixin):
 
     def __str__(self):
         return(f'{self.name}')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['brand', 'name'],
+                name='unique_product_name'
+            )
+        ]
