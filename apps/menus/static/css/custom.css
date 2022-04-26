@@ -57,9 +57,22 @@ textarea:focus {
 
 select.form-control,
 input.form-control {
-	min-width:max-content;
+	min-width: max-content;
 }
 
-@media (orientation: portrait) {
-	body { display: none; }
-}
+/* @media (orientation: portrait) {
+	body {
+		display: none;
+	}
+} */
+
+/*  This css hide content when phone is in portrait for ios devices 
+	@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+		.menu-detail-form-page {
+			display: none;
+		}
+} */
