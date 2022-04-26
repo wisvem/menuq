@@ -27,11 +27,20 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {                                                                                                                               
-    'default': {                                                                                                                            
-    'ENGINE': 'django.db.backends.sqlite3',                                                                                                 
-    'NAME': BASE_DIR / 'db.sqlite3',                                                                                                        
-    }                                                                                                                                       
+# DATABASES = {                                                                                                                               
+#     'default': {                                                                                                                            
+#     'ENGINE': 'django.db.backends.sqlite3',                                                                                                 
+#     'NAME': BASE_DIR / 'db.sqlite3',                                                                                                        
+#     }                                                                                                                                       
+# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'menuqdbtest',
+        'USER': 'wisvem',
+        'PASSWORD': 'alohomora1',
+        'HOST': 'wisvem.mysql.pythonanywhere-services.com'
+    }
 }
 
 STATICFILES_FINDERS = [
