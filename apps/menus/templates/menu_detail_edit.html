@@ -2,8 +2,8 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block content %}
-  {% include "partials/appnavbar.html" %}
-  <form action="" method="POST" enctype="multipart/form-data" class="container-sm border rounded-3">
+{% include "partials/appnavbar.html" %}
+  <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <h5 class="display-6">{{ menu.name }} {{ menu.brand }}</h5>
     {% for hidden_field in form.hidden_fields %}
@@ -12,44 +12,46 @@
     {% endfor %}
     {{ form.management_form }}
     {{ form.non_form_errors }}
-    <div class="table-responsive">
-      <table class="table table-borderless table-sm">
-        <thead class="text-center">
-          <tr>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Delete?</th>
-          </tr>
-        </thead>
-        <tbody id="detail-form">
-          {% for detail_form in form.forms %}
-            {% for hidden_field in detail_form.hidden_fields %}
-              {{ hidden_field.errors }}
-            {% endfor %}
-            <tr class="product-form">
-              <td>
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-grip-vertical">&nbsp</i>
-                  {{ detail_form.product|add_class:"select form-control" }}
-                </div>
-              </td>
-              <td>{{ detail_form.category|add_class:"select form-control" }}</td>
-              <td>{% render_field detail_form.price class="form-control text-end" min="0" max="99999999" %}</td>
-              <td class="align-middle text-center">{{ detail_form.DELETE|add_class:"form-check-input" }}</td>
-              {% render_field detail_form.order type="hidden" value=0 class="hidden"%}
-              {% render_field detail_form.menu type="hidden" class="hidden" %}
-              {% render_field detail_form.id type="hidden" class="hidden"%}
-            </tr>
+
+    <div class="container border rounded-3 overflow-auto">
+
+      <div id="detail-form" class="container text-center d-flex flex-column">
+        <div class="row d-flex flex-nowrap">
+          <div class="col font-weight-bold">Product</div>
+          <div class="col font-weight-bold">Category</div>
+          <div class="col font-weight-bold">Price</div>
+          <div class="col font-weight-bold">Delete?</div>
+        </div>
+  
+        {% for detail_form in form.forms %}
+          {% for hidden_field in detail_form.hidden_fields %}
+            {{ hidden_field.errors }}
           {% endfor %}
-        </tbody>
-      </table>
+          
+          <div class="product-form row d-flex flex-nowrap my-1">
+            <div class="col col-3">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-grip-vertical">&nbsp</i>
+                {{ detail_form.product|add_class:"select form-control" }}
+              </div>
+            </div>
+            <div class="col col-3">{{ detail_form.category|add_class:"select form-control" }}</div>
+            <div class="col col-3">{% render_field detail_form.price class="form-control text-end" min="0" max="99999999" %}</div>
+            <div class="col col-3">{{ detail_form.DELETE|add_class:"form-check-input" }}</div>
+            {% render_field detail_form.order type="hidden" value=0 class="hidden"%}
+            {% render_field detail_form.menu type="hidden" class="hidden" %}
+            {% render_field detail_form.id type="hidden" class="hidden"%}
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <div>
+
+    <div class="my-1">
       <a href="{{ menu.get_absolute_url  }}" class="btn btn-danger">Go back</a>
       <button type="submit" value="Save" class="btn btn-success">Save</button>
       <button id="add-product-form" class="btn btn-primary">Add Another product</button>
     </div>
+
   </form>
   <script src="{% static 'js/add-form.js' %}"></script>
   <script src="{% static 'js/select-search.js' %}"></script>

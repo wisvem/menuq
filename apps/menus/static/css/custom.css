@@ -60,6 +60,6 @@ input.form-control {
 	min-width:max-content;
 }
 
-.ui-sortable-helper {
-	display: flex;
+@media (orientation: portrait) {
+	body { display: none; }
 }
