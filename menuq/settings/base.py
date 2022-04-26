@@ -129,3 +129,5 @@ MESSAGE_TAGS = {
 }
 
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = "brands"
+LOGOUT_REDIRECT_URL = "/"
