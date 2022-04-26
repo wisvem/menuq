@@ -60,6 +60,11 @@ input.form-control {
 	min-width: max-content;
 }
 
+/* Fix no overflow in ios devices */
+.table-responsive .table {
+	max-width: none;
+}
+
 /* @media (orientation: portrait) {
 	body {
 		display: none;

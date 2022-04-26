@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
   {% include "partials/appnavbar.html" %}
-  <form action="" method="POST" enctype="multipart/form-data" class="container-sm border rounded-3">
+  <form action="" method="POST" enctype="multipart/form-data" class="container border rounded-3">
     {% csrf_token %}
     <h5 class="display-6">{{ menu.name }} {{ menu.brand }}</h5>
     {% for hidden_field in form.hidden_fields %}
