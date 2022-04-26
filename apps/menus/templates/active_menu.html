@@ -13,10 +13,10 @@
         {% with forloop.counter0 as index %}
           <div class="container-fluid">
             <div>
-              <a class="btn btn-block btn-lg border dropdown-toggle shadow-0 btn-dark mb-1" data-mdb-toggle="collapse" href="#collapse{{category.grouper}}" role="button" aria-expanded="false" aria-controls="collapse{{category.grouper}}">
+              <a class="btn btn-block btn-lg border dropdown-toggle shadow-0 btn-dark mb-1" data-mdb-toggle="collapse" href="#collapse{{category.grouper|cut:" "}}" role="button" aria-expanded="false" aria-controls="collapse{{category.grouper|cut:" "}}">
                 {{ category.grouper }}
               </a>
-              <div class="collapse row row-cols-1 row-cols-md-4 g-4" id="collapse{{category.grouper}}">
+              <div class="collapse row row-cols-1 row-cols-md-4 g-4" id="collapse{{category.grouper|cut:" "}}">
                 {% for item in category.list %}
                   <div class="col">
                     <div class="card border shadow-0 mb-2 mx-auto" style="max-width: 18rem;">
