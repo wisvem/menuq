@@ -12,16 +12,17 @@
               {% if menu.is_active %}
                 <span class="badge rounded-pill badge-success">Active</span>
               {% endif %}
+              <input class="fa-regular fa-copy" name="clone" type="submit" value="clone"></input>
             </h5>
             {% if not brand %}
               <p class="card-text">{{ menu.brand }}</p>
             {% endif %}
             <form method="POST">
               {% csrf_token %}
-              <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary">Details</a>
+              <a href={% url "menu_detail" menu.brand.id menu.id %} class="btn btn-primary btn-sm">Details</a>
               {% if not menu.is_active %}
                 <input type="hidden" value="{{ menu.id }}" name="menu_id"/>
-                <button type="submit" value="Activate" class="btn" name="activate">Activate</button>
+                <button type="submit" value="Activate" class="btn btn-sm" name="activate">Activate</button>                
               {% endif %}
             </form>
           </div>

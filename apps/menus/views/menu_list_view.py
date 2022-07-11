@@ -5,8 +5,10 @@ from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.views.generic import ListView, UpdateView
 
+from apps.base.helpers import clone_object
+from apps.companies.models import Brand
 from apps.menus.form import MenuCreateForm
-from apps.menus.models.menu import *
+from apps.menus.models import Menu
 
 
 class MenuListView(ListView, LoginRequiredMixin, UpdateView):
@@ -55,6 +57,8 @@ class MenuListView(ListView, LoginRequiredMixin, UpdateView):
                 f'{menu.name} has been activated'
             )
             return HttpResponseRedirect(request.build_absolute_uri())
+        elif 'clone' in request.POST:
+            print("Clonado")
         else:
             self.object = self.get_object()
             return super(MenuListView, self).post(request, *args, **kwargs)
