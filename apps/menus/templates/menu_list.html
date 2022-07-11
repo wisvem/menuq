@@ -12,7 +12,7 @@
               {% if menu.is_active %}
                 <span class="badge rounded-pill badge-success">Active</span>
               {% endif %}
-              <input class="fa-regular fa-copy" name="clone" type="submit" value="clone"></input>
+              {% comment %} <input class="fa-regular fa-copy" name="clone" type="submit" value="clone"></input> {% endcomment %}
             </h5>
             {% if not brand %}
               <p class="card-text">{{ menu.brand }}</p>
