@@ -1,5 +1,6 @@
 from django.core.serializers import serialize
 from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
 
 from apps.companies.models import Brand
 from apps.menus.models import Menu
@@ -26,5 +27,6 @@ class MenuActiveView(ListView):
         return context
 
     def get_queryset(self):
-        self.brand = Brand.objects.get(pk=self.kwargs['brand_id'])
+        #self.brand = Brand.objects.get(pk=self.kwargs['brand_id'])
+        self.brand = get_object_or_404(Brand, pk=self.kwargs['brand_id'])
         return Menu.objects.filter(is_active=True, brand=self.brand).first()
