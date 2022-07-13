@@ -1,7 +1,7 @@
 from .base import *
 import os
 
-DEBUG = True
+DEBUG = False
 
 INSTALLED_APPS += [
     'apps.menus',
